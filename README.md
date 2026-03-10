@@ -1,6 +1,9 @@
 # ParticleTool
 **Particle Tool By Atlas and ImBee**
 
+Compiling the latest version requires the compiled static library `KsUtils`.<br>
+[Link](https://github.com/A-t-l-as/LibKsUtils)<br>
+
 Particle Tool By Atlas and ImBee is a package of two programs used to convert particle files from Reality Pump games in order to enable easier editing and running of the same particle in different games from this studio. This package of programs is a “bridge” between different particle formats. These programs support the following games/titles:<br>
 → Earth 2150: Escape from the Blue Planet,<br>
 → Earth 2150: The Moon Project,<br>
@@ -31,6 +34,9 @@ The programs, specifically the export and re-import functions, were tested on:<b
 ---
 
 **Narzędzie Particle Tool autorstwa Atlas i ImBee**
+
+Kompilacja najnowszej wersji wymaga skompilowanej statycznej biblioteki `KsUtils`.<br>
+[Link](https://github.com/A-t-l-as/LibKsUtils)<br>
 
 Particle Tool By Atlas and ImBee to pakiet dwóch programów służacych do konwersji plików
 particlesów z gier Reality Pump w celu umożliwienia ich prostszej edycji i uruchamiania tego
