@@ -28,7 +28,8 @@ void PairParticleEmiterClass::ParseFrom(string& arg_line, GlobalQueues& arg_queu
 {
     TU::GetSingleString(arg_line, "Emiter", m_pair_particle_emiter_data.emiter_name);
 
-    TU::GetSingleStringFromQueue(arg_line, "annotation", m_pair_particle_emiter_data.annotation, arg_queues.m_annotations_q);
+    TU::GetSingleStringFromQueue
+        (arg_line, "annotation", m_pair_particle_emiter_data.annotation, arg_queues.m_annotations_q);
 
     TU::GetSingleString(arg_line, "Particle", m_pair_particle_emiter_data.particle_name);
 
@@ -56,7 +57,8 @@ void PairParticleEmiterClass::ParseFrom(string& arg_line, GlobalQueues& arg_queu
 
     TU::GetOneValue<uint32_t>(arg_line, "drawParticleEmiter", m_pair_particle_emiter_data.draw_particle_emiter);
 
-    TU::GetVectorOfStringsFromQueue(arg_line, "emitsGroups", m_pair_particle_emiter_data.emits_groups, arg_queues.m_emits_groups_q);
+    TU::GetVectorOfStringsFromQueue
+        (arg_line, "emitsGroups", m_pair_particle_emiter_data.emits_groups, arg_queues.m_emits_groups_q);
 
 
     m_pair_particle_emiter_data.looped_emission.ParseFrom( arg_line, "loopedEmission", "%d", "%f");

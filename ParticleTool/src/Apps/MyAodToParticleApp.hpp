@@ -67,7 +67,7 @@ private:
         {
             case ParticleGlobals::particle_type_value::dynamic_particle:
             case ParticleGlobals::particle_type_value::ks_particles_emiter:
-                return arg_path.parent_path() / (dir_name + ".msh" );
+                return arg_path.parent_path() / (dir_name + ".msh");
             break;
 
             case ParticleGlobals::particle_type_value::e2160_particle:

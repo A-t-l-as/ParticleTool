@@ -42,10 +42,6 @@ public:
         {
             buff.ReadValue( curve_vector_size );
 
-            //DEBUG_PRINT("CURVE_VECTOR_SIZE = ");
-            //DEBUG_PRINT(std::to_string(curve_vector_size).c_str());
-            //DEBUG_PRINT("\n");
-
             for (uint64_t j = 0; j < curve_vector_size; ++j)
             {
                 buff.ReadValue(single_curve_point.x);
@@ -138,12 +134,13 @@ public:
         {
 
             DEBUG_PRINT("ITS CURVE HEADER!\n");
-            //const unsigned int size_of_c_help = 30;
-            //char c_help[size_of_c_help];
-
 
             std::string help_str =
-                arg_line.substr(ParticleGlobals::curve_type_name_with_space_len, arg_line.length() - ParticleGlobals::curve_type_name_with_space_len);
+                arg_line.substr
+                (
+                    ParticleGlobals::curve_type_name_with_space_len,
+                    arg_line.length() - ParticleGlobals::curve_type_name_with_space_len
+                );
 
 
             std::istringstream iss(help_str);
@@ -151,28 +148,11 @@ public:
             float curve_scalar = 0.0f;
             std::string curve_string;
 
-            //sscanf_s(
-            //    help_str.c_str(),
-            //    "%zu %f %s",
-            //    &number_of_single_curve_points_checksum,
-            //    &curve_scalar,
-            //    c_help,
-            //    size_of_c_help
-            //    );
-
             if (!(iss >> number_of_single_curve_points_checksum >> curve_scalar >> curve_string))
             {
                 DEBUG_PRINT("ParseCurveHeader: failed to parse curve header line\n");
                 return;
             }
-
-            //printf("number_of_single_curve_points_checksum = %zu\n", number_of_single_curve_points_checksum);
-
-            //for (unsigned int i = 0; i < size_of_c_help; ++i)
-            //{
-            //    if (c_help[i] == '\0') { break; }
-            //    curve_string += c_help[i];
-            //}
 
             label_index = mapped_labels[curve_string];
 

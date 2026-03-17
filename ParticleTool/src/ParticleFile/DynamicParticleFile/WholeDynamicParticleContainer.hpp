@@ -21,7 +21,7 @@ public:
 
     void ExportTo(std::stringstream& ss)
     {
-
+        // ...
     }
 
 private:

@@ -237,8 +237,6 @@ void DynamicParticleClass::GetWholeObject(
 	
     TU::GetSingleString(arg_line, "Object", arg_dynamic_particle_data.m_obj_name);
 
-	//cout << arg_dynamic_particle_data.m_obj_name << endl;
-
     Misc::MoveByLinesInSS(dynamic_particle_file_stream, 1);
 
 	while(true)
@@ -252,28 +250,39 @@ void DynamicParticleClass::GetWholeObject(
 
         GetSingleObject(dynamic_particle_file_stream, arg_dynamic_particle_data, arg_line, arg_queues);
 
-        TU::GetSingleStringAndInterpretConst(arg_line, "Type", arg_dynamic_particle_data.type, m_list_of_type_consts_for_import);
-        TU::GetSingleStringAndInterpretConst(arg_line, "LightType", arg_dynamic_particle_data.light_type, m_list_of_lighttype_consts_for_import);
+        TU::GetSingleStringAndInterpretConst
+            (arg_line, "Type", arg_dynamic_particle_data.type, m_list_of_type_consts_for_import);
+
+        TU::GetSingleStringAndInterpretConst
+            (arg_line, "LightType", arg_dynamic_particle_data.light_type, m_list_of_lighttype_consts_for_import);
+
         TU::GetOneValue<uint32_t>(arg_line, "Additive", arg_dynamic_particle_data.additive);
 
-        TU::GetArrayValues<int32_t>(arg_line, "Frames", "%d", arg_dynamic_particle_data.frames, arg_dynamic_particle_data.frames_size);
+        TU::GetArrayValues<int32_t>
+            (arg_line, "Frames", "%d", arg_dynamic_particle_data.frames, arg_dynamic_particle_data.frames_size);
 		// /\ Dodatkowe obliczenia w metodzie CalculateImportantValues...
 
-        TU::GetArrayValues<float>(arg_line, "Light", "%f", arg_dynamic_particle_data.light, arg_dynamic_particle_data.light_size);
+        TU::GetArrayValues<float>
+            (arg_line, "Light", "%f", arg_dynamic_particle_data.light, arg_dynamic_particle_data.light_size);
 		// /\ Dodatkowe obliczenia w metodzie CalculateImportantValues...
 
-        TU::GetArrayValues<float>(arg_line, "Size", "%f", arg_dynamic_particle_data.size, arg_dynamic_particle_data.size_size);
+        TU::GetArrayValues<float>
+            (arg_line, "Size", "%f", arg_dynamic_particle_data.size, arg_dynamic_particle_data.size_size);
 		// /\ Dodatkowe obliczenia w metodzie CalculateImportantValues...
 
-        TU::GetArrayValues<float>(arg_line, "Size2", "%f", arg_dynamic_particle_data.size_2, arg_dynamic_particle_data.size_2_size);
+        TU::GetArrayValues<float>
+            (arg_line, "Size2", "%f", arg_dynamic_particle_data.size_2, arg_dynamic_particle_data.size_2_size);
 
-        TU::GetArrayValues<float>(arg_line, "Color", "%f", arg_dynamic_particle_data.color, arg_dynamic_particle_data.color_size);
+        TU::GetArrayValues<float>
+            (arg_line, "Color", "%f", arg_dynamic_particle_data.color, arg_dynamic_particle_data.color_size);
 
         arg_dynamic_particle_data.alpha.ParseFrom(arg_line, "Alpha", "%f", "%d");
 
-        TU::GetArrayValues<float>(arg_line, "Scale", "%f", arg_dynamic_particle_data.scale, arg_dynamic_particle_data.scale_size);
+        TU::GetArrayValues<float>
+            (arg_line, "Scale", "%f", arg_dynamic_particle_data.scale, arg_dynamic_particle_data.scale_size);
 		 
-        TU::GetArrayValues<float>(arg_line, "Position", "%f", arg_dynamic_particle_data.position, arg_dynamic_particle_data.position_size);
+        TU::GetArrayValues<float>
+            (arg_line, "Position", "%f", arg_dynamic_particle_data.position, arg_dynamic_particle_data.position_size);
 		// /\ Dodatkowe obliczenia w metodzie CalculateImportantValues...
 		
         TU::GetArrayValues<float>(arg_line,
@@ -413,7 +422,8 @@ void DynamicParticleClass::WriteDynamicParticleDataToFileBuffer(BinFile& output_
 	// Rekurencyjne wczytywanie dzieci
 	for (uint32_t i = 0; i < arg_dynamic_particle_data.number_of_nested_particles; ++i)
 	{
-        std::filesystem::path child_extra_data_file_path = m_particle_directory_path / (arg_dynamic_particle_data.children[i].m_obj_name + "_extra_data.cpp");
+        std::filesystem::path child_extra_data_file_path =
+            m_particle_directory_path / (arg_dynamic_particle_data.children[i].m_obj_name + "_extra_data.cpp");
 
 		//cout << child_extra_data_file_name << endl;
 

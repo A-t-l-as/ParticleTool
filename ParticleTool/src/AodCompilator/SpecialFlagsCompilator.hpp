@@ -162,7 +162,8 @@ private:
 
                 if (!(Misc::CheckAnswerWithEveryElementInVec(value, dynamic_particle_correct_formats)))
                 {
-                    CONSOLE_ERR.PrintLn("Error: The __compilator_flags__.cfg file contains an incorrect dynamic particle format.",
+                    CONSOLE_ERR.PrintLn
+                        ("Error: The __compilator_flags__.cfg file contains an incorrect dynamic particle format.",
                                         Mess::endl,
                                         "       Please correct the __compilator_flags__.cfg file.", Mess::endl,
                                         "       At this point, the program will assume that it is ks format.");
@@ -173,16 +174,20 @@ private:
                 m_dynamic_particle_file_version_info = m_dynamic_particle_file_version_info_hash_map[value];
 
                 CONSOLE_OUT.PrintLn(Mess::endl,
-                                    "----------------------------------------------------------------------------------", Mess::endl,
-                                    "The following format was found in the file __compilator_flags__.cfg: ", value, Mess::endl,
-                                    "----------------------------------------------------------------------------------", Mess::endl);
+                                    "----------------------------------------------------------------------------------",
+                                    Mess::endl,
+                                    "The following format was found in the file __compilator_flags__.cfg: ", value,
+                                    Mess::endl,
+                                    "----------------------------------------------------------------------------------",
+                                    Mess::endl);
 
                 return;
             }
 
             if (name != "dynamic_particle_version")
             {
-                CONSOLE_ERR.PrintLn("Error: The __compilator_flags__.cfg file contains an incorrect __compiler_var__ flag.", Mess::endl,
+                CONSOLE_ERR.PrintLn("Error: The __compilator_flags__.cfg file contains an incorrect __compiler_var__ flag.",
+                                    Mess::endl,
                                     "       Please correct the __compilator_flags__.cfg file.");
 
                 value_type = std::string();

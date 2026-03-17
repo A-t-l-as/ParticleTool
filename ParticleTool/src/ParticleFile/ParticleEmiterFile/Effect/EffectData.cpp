@@ -39,29 +39,7 @@ void EffectData::ConvertTeselatesAndCurves(ParticleGlobals::particle_type_value&
             (ParticleFileVersionConsts::e2160_particle_edit_file_type.number_of_linked_min_max_in_effect,
                                           ParticleGlobals::locked_linked_min_max);
 
-        /*
-        effect_data.curves_groups.curves.resize
-            (ParticleFileVersionConsts::e2160_particle_edit_file_type.number_of_iel_in_effect);
-
-        effect_data.curves_groups.curve_scalars.resize
-            (ParticleFileVersionConsts::e2160_particle_edit_file_type.number_of_iel_in_effect);
-
-        effect_data.curves_groups.curve_bonus_values.resize
-            (ParticleFileVersionConsts::e2160_particle_edit_file_type.number_of_iel_in_effect);
-        */
-
         effect_data.curves_groups.Resize(ParticleFileVersionConsts::e2160_particle_edit_file_type.number_of_iel_in_effect);
-
-        /*
-        effect_data.teselates_groups.teselates.resize
-            (ParticleFileVersionConsts::e2160_particle_edit_file_type.number_of_iel_in_effect);
-
-        effect_data.teselates_groups.iel_scalars.resize
-            (ParticleFileVersionConsts::e2160_particle_edit_file_type.number_of_iel_in_effect);
-
-        effect_data.teselates_groups.teselate_flags.resize
-            (ParticleFileVersionConsts::e2160_particle_edit_file_type.number_of_iel_in_effect);
-        */
 
         effect_data.teselates_groups.Resize(ParticleFileVersionConsts::e2160_particle_edit_file_type.number_of_iel_in_effect);
 

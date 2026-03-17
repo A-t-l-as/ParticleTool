@@ -459,10 +459,8 @@ void EmiterClass::WriteToKsFormat(BinFile& output_file_buff)
 
     output_file_buff.WriteArrayFromTo(m_emiter_data.scales.a, 6, 11);
 
-    //BW::WriteTeselates<uint32_t>(output_file_buff, m_emiter_data.teselates_groups);
     m_emiter_data.teselates_groups.WriteTo<uint32_t>(output_file_buff);
 
-    //output_file_buff.WriteVector(m_emiter_data.teselates_groups.teselate_flags);
     m_emiter_data.teselates_groups.WriteTeselateFlagsTo(output_file_buff);
 
     output_file_buff.WriteVector(m_emiter_data.linked_min_max);
@@ -543,25 +541,19 @@ void EmiterClass::WriteToParticleGenAndTwoWorldsFormat(BinFile& output_file_buff
     output_file_buff.WriteValue(m_emiter_data.unknown_value_4);
     output_file_buff.WriteValue(m_emiter_data.unknown_value_5);
 
-    //BW::WriteCurves(output_file_buff, m_emiter_data.curves_groups);
     m_emiter_data.curves_groups.WriteTo(output_file_buff);
 
     
     if (m_prt_file_version_info.particle_version == ParticleGlobals::particle_type_value::two_worlds_particle)
     {
-        // BW::WriteTeselates<uint64_t>(output_file_buff,
-        //                              m_emiter_data.teselates_groups,
-        //                              true);
 
         m_emiter_data.teselates_groups.WriteTo<uint64_t>(output_file_buff, true);
     }
     else
     {
-        //BW::WriteTeselates<uint64_t>(output_file_buff, m_emiter_data.teselates_groups);
 
         m_emiter_data.teselates_groups.WriteTo<uint64_t>(output_file_buff);
 
-        //output_file_buff.WriteVector(m_emiter_data.teselates_groups.teselate_flags);
         m_emiter_data.teselates_groups.WriteTeselateFlagsTo(output_file_buff);
     }
 

@@ -1,4 +1,5 @@
 #include "FileHeaderClass.hpp"
+#include "Compilator/CompilatorValueTypes.hpp"
 
 using namespace std;
 
@@ -117,13 +118,13 @@ void FileHeaderClass::ReadFrom(BinFile& buff)
 
 void FileHeaderClass::ExportAsKsFormat(std::stringstream& output) const
 {
-    output << "struct Header" << endl
+    output << CompilatorValueTypes::c_struct_type_str << " Header" << endl
         << "{" << endl;
 
 
     for (int i = 0; i < m_file_header_data.c_header_size; ++i)
     {
-        output << "\tuint8_t header_main_flag_" << i << " = "
+        output << "\t" << CompilatorValueTypes::c_uint8_t_type_str << " header_main_flag_" << i << " = "
                << static_cast<int>(m_file_header_data.header[i]) << ";";
 
         if (isalpha(m_file_header_data.header[i]))
@@ -133,10 +134,10 @@ void FileHeaderClass::ExportAsKsFormat(std::stringstream& output) const
 
     }
 
-    output << "\tint32_t particle_file_type" << " = "
+    output << "\t" << CompilatorValueTypes::c_int32_t_type_str << " particle_file_type" << " = "
            << static_cast<int32_t>(m_file_header_data.particle_file_type) << ";" << endl;
 
-    output << "\tGUID header_guid = " << m_file_header_data.guid << ";" << endl;
+    output << "\t" << CompilatorValueTypes::c_guid_type_str << " header_guid = " << m_file_header_data.guid << ";" << endl;
 
     output << "};" << endl << endl;
 
@@ -144,12 +145,12 @@ void FileHeaderClass::ExportAsKsFormat(std::stringstream& output) const
 
 void FileHeaderClass::ExportAsPgAndTwFormat(std::stringstream& output) const
 {
-    output << "struct Header" << endl
+    output << CompilatorValueTypes::c_struct_type_str << " Header" << endl
            << "{" << endl;
 
     for (int i = 0; i < m_file_header_data.c_header_size; ++i)
     {
-        output << "\tuint8_t header_main_flag_" << i << " = "
+        output << "\t" << CompilatorValueTypes::c_uint8_t_type_str << " header_main_flag_" << i << " = "
                << static_cast<int>(m_file_header_data.header[i]) << ";";
 
         if (isalpha(m_file_header_data.header[i]))
@@ -164,7 +165,7 @@ void FileHeaderClass::ExportAsPgAndTwFormat(std::stringstream& output) const
 
 void FileHeaderClass::ExportAsE2160Format(std::stringstream& output) const
 {
-    output << "struct Header" << endl
+    output << CompilatorValueTypes::c_struct_type_str << " Header" << endl
            << "{"             << endl 
            << "};"            << endl << endl;
 }

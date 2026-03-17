@@ -59,7 +59,14 @@ private:
         GlobalQueues& arg_queues
     );
     //{
-    void GetSingleObject(std::stringstream& dynamic_particle_file_stream, DynamicParticleData& arg_dynamic_particle_data, std::string& arg_line, GlobalQueues& arg_queues);
+    void GetSingleObject
+    (
+        std::stringstream& dynamic_particle_file_stream,
+        DynamicParticleData& arg_dynamic_particle_data,
+        std::string& arg_line,
+        GlobalQueues& arg_queues
+    );
+
     void GetTime(DynamicParticleData& arg_dynamic_particle_data, std::string& arg_line);
     //}
 

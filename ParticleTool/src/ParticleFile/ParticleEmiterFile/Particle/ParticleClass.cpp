@@ -226,7 +226,8 @@ void ParticleClass::ParseFrom(string& arg_line, GlobalQueues& arg_queues)
     m_particle_data.tex_anim.ParseViaSchemeFrom(arg_line, "texAnim", "%d", "%f", "a,a,a,a,a,a,a,a,a,b,a");
 
 
-    TU::GetArrayValues<float>(arg_line, "coordinatesLTRB", "%f", m_particle_data.coordinates_ltrb, m_particle_data.coordinates_ltrb_size);
+    TU::GetArrayValues<float>
+        (arg_line, "coordinatesLTRB", "%f", m_particle_data.coordinates_ltrb, m_particle_data.coordinates_ltrb_size);
 
     TU::GetOneValue<uint32_t>(arg_line, "distortionParticleSwitch", m_particle_data.distortion_particle_switch);
 
@@ -408,25 +409,19 @@ void ParticleClass::WriteToParticleGenAndTwoWorldsFormat(BinFile& output_file_bu
 
     output_file_buff.WriteValue(m_particle_data.scales);
 
-    //BW::WriteCurves(output_file_buff, m_particle_data.curves_groups);
     m_particle_data.curves_groups.WriteTo(output_file_buff);
 
 
     if (m_prt_file_version_info.particle_version == ParticleGlobals::particle_type_value::two_worlds_particle)
     {
-        // BW::WriteTeselates<uint64_t>(output_file_buff,
-        //                              m_particle_data.teselates_groups,
-        //                              true);
 
         m_particle_data.teselates_groups.WriteTo<uint64_t>(output_file_buff, true);
     }
     else
     {
-        // BW::WriteTeselates<uint64_t>(output_file_buff, m_particle_data.teselates_groups);
 
         m_particle_data.teselates_groups.WriteTo<uint64_t>(output_file_buff);
 
-        //output_file_buff.WriteVector(m_particle_data.teselates_groups.teselate_flags);
         m_particle_data.teselates_groups.WriteTeselateFlagsTo(output_file_buff);
 
     }
@@ -497,13 +492,10 @@ void ParticleClass::WriteToE2160Format(BinFile& output_file_buff)
 
     output_file_buff.WriteValue(m_particle_data.scales);
 
-    // BW::WriteCurves(output_file_buff, m_particle_data.curves_groups, true);
     m_particle_data.curves_groups.WriteTo(output_file_buff, true);
 
-    // BW::WriteTeselates<uint64_t>(output_file_buff, m_particle_data.teselates_groups);
     m_particle_data.teselates_groups.WriteTo<uint64_t>(output_file_buff);
 
-    //output_file_buff.WriteVector(m_particle_data.teselates_groups.teselate_flags);
     m_particle_data.teselates_groups.WriteTeselateFlagsTo(output_file_buff);
 
     output_file_buff.WriteVector(m_particle_data.linked_min_max);
@@ -554,11 +546,8 @@ void ParticleClass::WriteToKsFormat(BinFile& output_file_buff)
 
     output_file_buff.WriteValue(m_particle_data.scales_end);
 
-    // BW::WriteTeselates<uint32_t>(output_file_buff, m_particle_data.teselates_groups);
-
     m_particle_data.teselates_groups.WriteTo<uint32_t>(output_file_buff);
 
-    //output_file_buff.WriteVector(m_particle_data.teselates_groups.teselate_flags);
     m_particle_data.teselates_groups.WriteTeselateFlagsTo(output_file_buff);
 
     output_file_buff.WriteVector(m_particle_data.linked_min_max);

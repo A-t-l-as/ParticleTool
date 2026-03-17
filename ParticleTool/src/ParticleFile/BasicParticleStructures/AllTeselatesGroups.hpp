@@ -118,8 +118,6 @@ public:
 
         if ( arg_line.starts_with(ParticleGlobals::teselate_type_name_str_with_space) )
         {
-            //const unsigned int size_of_c_help = 30;
-            //char c_help[size_of_c_help];
 
             uint32_t single_teselate_flag = 0;
             float teselate_scalar = 0.0f;
@@ -137,22 +135,6 @@ public:
                 >> single_teselate_flag
                 >> teselate_scalar
                 >> teselate_string;
-
-            //sscanf_s(
-            //    help_str.c_str(),
-            //    "%zu %d %f %s",
-            //    &number_of_single_teselate_points_checksum,
-            //    &single_teselate_flag,
-            //    &teselate_scalar,
-            //    c_help,
-            //    size_of_c_help
-            //    );
-
-            //for (unsigned int i = 0; i < size_of_c_help; ++i)
-            //{
-            //    if (c_help[i] == '\0') { break; }
-            //    teselate_string += c_help[i];
-            //}
 
             label_index = mapped_labels[teselate_string];
 

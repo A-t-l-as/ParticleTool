@@ -105,7 +105,8 @@ static void InsertTeselateAndCurveGroup
 {
     curves_groups.curves.insert(curves_groups.curves.begin() + index, arg_tes_and_curve.curve);
     curves_groups.curve_scalars.insert(curves_groups.curve_scalars.begin() + index, arg_tes_and_curve.curve_scalar);
-    curves_groups.curve_bonus_values.insert(curves_groups.curve_bonus_values.begin() + index, arg_tes_and_curve.curve_bonus_value);
+    curves_groups.curve_bonus_values.insert
+        (curves_groups.curve_bonus_values.begin() + index, arg_tes_and_curve.curve_bonus_value);
 
     teselates_groups.teselates.insert(teselates_groups.teselates.begin() + index, arg_tes_and_curve.teselate);
     teselates_groups.iel_scalars.insert(teselates_groups.iel_scalars.begin() + index, arg_tes_and_curve.iel_scalar);

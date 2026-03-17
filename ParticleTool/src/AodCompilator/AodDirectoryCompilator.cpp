@@ -32,7 +32,6 @@ void AodDirectoryCompilator::GetPrtVersion(const std::string& arg_line,
                                   ParticleGlobals::particle_type_value& dst,
                                   ParticleFileVersionInfo& arg_particle_file_version_info)
 {
-	//DEBUG_PRINT("SPRAWDZAM WERSJE PARTICLESA1\n");
 
     if ( arg_line.starts_with(ParticleGlobals::version_str_with_space) )
 	{
@@ -59,7 +58,6 @@ void AodDirectoryCompilator::GetDynamicParticleVersion(  const std::string& arg_
                                                 ParticleGlobals::particle_type_value& dst,
                                                 ParticleFileVersionInfo& arg_particle_file_version_info)
 {
-	//DEBUG_PRINT("SPRAWDZAM WERSJE PARTICLESA2\n");
 
     if (  arg_line.starts_with(ParticleGlobals::dynamic_name_str)  )
 	{
@@ -112,7 +110,8 @@ void AodDirectoryCompilator::CompileDirectory(const std::filesystem::path& input
 
     const std::string particles_emiter_macro_text = "__PARTICLES_EMITER_MACRO__";
 
-    StringUtils::ReplaceAllOccurrences(temporary_string_file_buffer, ParticleGlobals::particles_emiter_name_str, particles_emiter_macro_text);
+    StringUtils::ReplaceAllOccurrences
+        (temporary_string_file_buffer, ParticleGlobals::particles_emiter_name_str, particles_emiter_macro_text);
 
     this->r_queues.m_effect_names_q =
         Misc::FindLineStrings(temporary_string_file_buffer.data(),
@@ -130,7 +129,8 @@ void AodDirectoryCompilator::CompileDirectory(const std::filesystem::path& input
         Misc::FindLineStrings(temporary_string_file_buffer.data(),
                                  temporary_string_file_buffer.size(), ParticleGlobals::pair_particle_type_name_str_with_space);
 
-    StringUtils::ReplaceAllOccurrences(temporary_string_file_buffer, particles_emiter_macro_text, ParticleGlobals::particles_emiter_name_str);
+    StringUtils::ReplaceAllOccurrences
+        (temporary_string_file_buffer, particles_emiter_macro_text, ParticleGlobals::particles_emiter_name_str);
 
     this->r_queues.m_annotations_q = Misc::FindLineStrings(file_buffer.data(), file_buffer.size(), "annotation ");
 

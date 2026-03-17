@@ -1,4 +1,5 @@
 #include "CustomBlockClass.hpp"
+#include "Compilator/CompilatorValueTypes.hpp"
 
 #include <format>
 
@@ -118,17 +119,30 @@ void CustomBlockClass::ReadFrom(BinFile& buff)
 void CustomBlockClass::ExportAsKsFormat(std::stringstream& output)
 {
 
-    output << "struct DataBlock" << endl << "{" << endl;
+    output << CompilatorValueTypes::c_struct_type_str << " DataBlock" << endl << "{" << endl;
 
     for (int i = 0; i < m_custom_block_data.c_format_size; ++i)
     {
-        output << "\tuint8_t format" << i << " = " << static_cast<uint32_t>(m_custom_block_data.format[i]) <<
-            "; // " << m_custom_block_data.format[i] << endl;
+        output << "\t"
+               << CompilatorValueTypes::c_uint8_t_type_str
+               << " format"
+               << i
+               << " = "
+               << static_cast<uint32_t>(m_custom_block_data.format[i])
+               << "; // "
+               << m_custom_block_data.format[i]
+               << endl;
     }
 
     for (size_t i = 0; i < m_custom_block_data.data.size(); ++i)
-        output << "\tuint32_t data_var" << std::format("{:04}", i) << " = "
-        << m_custom_block_data.data[i] << ";" << endl;
+        output  << "\t"
+                << CompilatorValueTypes::c_uint32_t_type_str
+                << " data_var"
+                << std::format("{:04}", i)
+                << " = "
+                << m_custom_block_data.data[i]
+                << ";"
+                << endl;
 
     output << "};" << endl << endl;
 
