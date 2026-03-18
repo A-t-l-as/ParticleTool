@@ -12,8 +12,8 @@ struct FileHeaderData
     constexpr const unsigned int static c_header_size = 4;
     uint8_t header[c_header_size] = {0};
 
-    ParticleGlobals::particle_type_value particle_file_type =
-        ParticleGlobals::particle_type_value::not_particle;
+    ParticleGlobals::ENParticleTypeValue particle_file_type =
+        ParticleGlobals::ENParticleTypeValue::not_particle;
 
     std::string guid = MyGuid().ToString();
 

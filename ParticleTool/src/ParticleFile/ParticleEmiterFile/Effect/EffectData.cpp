@@ -8,32 +8,32 @@
 
 using namespace std;
 
-void EffectData::ConvertTeselatesAndCurves(ParticleGlobals::particle_type_value& src, ParticleGlobals::particle_type_value& dst)
+void EffectData::ConvertTeselatesAndCurves(ParticleGlobals::ENParticleTypeValue& src, ParticleGlobals::ENParticleTypeValue& dst)
 {
     if (src == dst)
     {
         return;
     }
 
-    if (src == ParticleGlobals::particle_type_value::two_worlds_particle
+    if (src == ParticleGlobals::ENParticleTypeValue::two_worlds_particle
         &&
-        dst == ParticleGlobals::particle_type_value::particle_gen_particle)
+        dst == ParticleGlobals::ENParticleTypeValue::particle_gen_particle)
     {
         return;
     }
 
-    if (src == ParticleGlobals::particle_type_value::particle_gen_particle
+    if (src == ParticleGlobals::ENParticleTypeValue::particle_gen_particle
         &&
-        dst == ParticleGlobals::particle_type_value::two_worlds_particle)
+        dst == ParticleGlobals::ENParticleTypeValue::two_worlds_particle)
     {
         return;
     }
 
     EffectData& effect_data = *this;
 
-    if (src == ParticleGlobals::particle_type_value::two_worlds_particle
+    if (src == ParticleGlobals::ENParticleTypeValue::two_worlds_particle
         &&
-        dst == ParticleGlobals::particle_type_value::e2160_particle)
+        dst == ParticleGlobals::ENParticleTypeValue::e2160_particle)
     {
         effect_data.linked_min_max.resize
             (ParticleFileVersionConsts::e2160_particle_edit_file_type.number_of_linked_min_max_in_effect,
@@ -46,9 +46,9 @@ void EffectData::ConvertTeselatesAndCurves(ParticleGlobals::particle_type_value&
         return;
     }
 
-    if (src == ParticleGlobals::particle_type_value::e2160_particle
+    if (src == ParticleGlobals::ENParticleTypeValue::e2160_particle
         &&
-        dst == ParticleGlobals::particle_type_value::two_worlds_particle)
+        dst == ParticleGlobals::ENParticleTypeValue::two_worlds_particle)
     {
         for
         (
@@ -73,17 +73,17 @@ void EffectData::ConvertTeselatesAndCurves(ParticleGlobals::particle_type_value&
     }
 
 
-    if (src == ParticleGlobals::particle_type_value::e2160_particle
+    if (src == ParticleGlobals::ENParticleTypeValue::e2160_particle
         &&
-        dst == ParticleGlobals::particle_type_value::ks_particles_emiter)
+        dst == ParticleGlobals::ENParticleTypeValue::ks_particles_emiter)
     {
         return;
     }
 
 
-    if (src == ParticleGlobals::particle_type_value::ks_particles_emiter
+    if (src == ParticleGlobals::ENParticleTypeValue::ks_particles_emiter
         &&
-        dst == ParticleGlobals::particle_type_value::e2160_particle)
+        dst == ParticleGlobals::ENParticleTypeValue::e2160_particle)
     {
         return;
     }

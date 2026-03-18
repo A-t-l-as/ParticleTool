@@ -10,26 +10,26 @@ using namespace std;
 
 void AodDirectoryCompilator::InitializeFormatHashMaps()
 {
-    m_list_of_prt_file_ver_info[ParticleGlobals::particle_type_value::not_particle] = ParticleFileVersionInfo();
+    m_list_of_prt_file_ver_info[ParticleGlobals::ENParticleTypeValue::not_particle] = ParticleFileVersionInfo();
 
-    m_list_of_prt_file_ver_info[ParticleGlobals::particle_type_value::dynamic_particle] =
+    m_list_of_prt_file_ver_info[ParticleGlobals::ENParticleTypeValue::dynamic_particle] =
         ParticleFileVersionConsts::ks_dynamic_file_type;
 
-    m_list_of_prt_file_ver_info[ParticleGlobals::particle_type_value::ks_particles_emiter] =
+    m_list_of_prt_file_ver_info[ParticleGlobals::ENParticleTypeValue::ks_particles_emiter] =
         ParticleFileVersionConsts::ks_particle_file_type;
 
-    m_list_of_prt_file_ver_info[ParticleGlobals::particle_type_value::e2160_particle] =
+    m_list_of_prt_file_ver_info[ParticleGlobals::ENParticleTypeValue::e2160_particle] =
         ParticleFileVersionConsts::e2160_particle_edit_file_type;
 
-    m_list_of_prt_file_ver_info[ParticleGlobals::particle_type_value::two_worlds_particle] =
+    m_list_of_prt_file_ver_info[ParticleGlobals::ENParticleTypeValue::two_worlds_particle] =
         ParticleFileVersionConsts::two_worlds_particle_edit_file_type;
 
-    m_list_of_prt_file_ver_info[ParticleGlobals::particle_type_value::particle_gen_particle] =
+    m_list_of_prt_file_ver_info[ParticleGlobals::ENParticleTypeValue::particle_gen_particle] =
         ParticleFileVersionConsts::particle_gen_file_type;
 }
 
 void AodDirectoryCompilator::GetPrtVersion(const std::string& arg_line,
-                                  ParticleGlobals::particle_type_value& dst,
+                                  ParticleGlobals::ENParticleTypeValue& dst,
                                   ParticleFileVersionInfo& arg_particle_file_version_info)
 {
 
@@ -42,7 +42,7 @@ void AodDirectoryCompilator::GetPrtVersion(const std::string& arg_line,
             );
 
 
-        dst = static_cast<ParticleGlobals::particle_type_value>(stoull(m_help_str, nullptr, ParticleGlobals::dec_base) + 1);
+        dst = static_cast<ParticleGlobals::ENParticleTypeValue>(stoull(m_help_str, nullptr, ParticleGlobals::dec_base) + 1);
 
 		DEBUG_PRINT("PRT VERSION = ");
 		DEBUG_PRINT(to_string(static_cast<uint32_t>(dst)).c_str());
@@ -55,13 +55,13 @@ void AodDirectoryCompilator::GetPrtVersion(const std::string& arg_line,
 }
 
 void AodDirectoryCompilator::GetDynamicParticleVersion(  const std::string& arg_line,
-                                                ParticleGlobals::particle_type_value& dst,
+                                                ParticleGlobals::ENParticleTypeValue& dst,
                                                 ParticleFileVersionInfo& arg_particle_file_version_info)
 {
 
     if (  arg_line.starts_with(ParticleGlobals::dynamic_name_str)  )
 	{
-        dst = ParticleGlobals::particle_type_value::dynamic_particle;
+        dst = ParticleGlobals::ENParticleTypeValue::dynamic_particle;
 		arg_particle_file_version_info = m_list_of_prt_file_ver_info[dst];
 
 		DEBUG_PRINT("PRT VERSION = ");
@@ -82,7 +82,7 @@ AodDirectoryCompilator::AodDirectoryCompilator    (
     r_output_file_buffer(arg_output_file_buffer),
     r_queues(arg_queues),
 
-    m_particle_type_version(ParticleGlobals::particle_type_value::not_particle),
+    m_particle_type_version(ParticleGlobals::ENParticleTypeValue::not_particle),
 	m_is_version_getted(false),
     m_inside_obj_type(std::string()),
     m_inside_obj_name(std::string()),
@@ -200,7 +200,7 @@ void AodDirectoryCompilator::CompileTxtFileToBinBuffer(
 
     const std::filesystem::path extra_data_file_path = input_dir_path / (input_dir_name + "_extra_data.cpp");
 
-    if (m_particle_type_version == ParticleGlobals::particle_type_value::dynamic_particle)
+    if (m_particle_type_version == ParticleGlobals::ENParticleTypeValue::dynamic_particle)
 	{
         bool error_handler = Globals::success_code;
 
@@ -220,7 +220,7 @@ void AodDirectoryCompilator::CompileTxtFileToBinBuffer(
 	}
 	
 
-    if (m_particle_type_version != ParticleGlobals::particle_type_value::dynamic_particle)
+    if (m_particle_type_version != ParticleGlobals::ENParticleTypeValue::dynamic_particle)
     {
         IntroductionHeaderClass my_introduction_header(m_particle_file_version_info, extra_data_file_path);
         my_introduction_header.ParseAndWriteTo(r_output_file_buffer);
@@ -251,16 +251,16 @@ bool AodDirectoryCompilator::InterpretInstructions(
 
 	switch (m_particle_type_version)
 	{
-        case ParticleGlobals::particle_type_value::dynamic_particle:
+        case ParticleGlobals::ENParticleTypeValue::dynamic_particle:
 
             return true;
 
         break;
 
-        case ParticleGlobals::particle_type_value::ks_particles_emiter:
-        case ParticleGlobals::particle_type_value::e2160_particle:
-        case ParticleGlobals::particle_type_value::two_worlds_particle:
-        case ParticleGlobals::particle_type_value::particle_gen_particle:
+        case ParticleGlobals::ENParticleTypeValue::ks_particles_emiter:
+        case ParticleGlobals::ENParticleTypeValue::e2160_particle:
+        case ParticleGlobals::ENParticleTypeValue::two_worlds_particle:
+        case ParticleGlobals::ENParticleTypeValue::particle_gen_particle:
             InterpretParticlesEmiterInstructions
             (
                 instruction,

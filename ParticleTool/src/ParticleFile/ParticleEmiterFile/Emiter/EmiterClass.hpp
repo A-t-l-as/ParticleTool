@@ -30,7 +30,7 @@ public:
     void SetPrtVersion(ParticleFileVersionInfo arg_prt_file_version_info)
     {
         if (arg_prt_file_version_info.particle_version ==
-            ParticleGlobals::particle_type_value::two_worlds_particle)
+            ParticleGlobals::ENParticleTypeValue::two_worlds_particle)
         {
             m_fourth_byte_of_header = ParticleGlobals::tw_new_format_fourth_byte_of_header;
         }
@@ -61,7 +61,7 @@ private:
     uint8_t m_fourth_byte_of_header;
     static uint32_t emiter_number;
 
-    ParticleGlobals::curve_or_teselate_mode m_mode;
+    ParticleGlobals::ENCurveOrTeselateMode m_mode;
 
     int64_t m_curve_iel_index;
     size_t m_number_of_single_curve_points_checksum;

@@ -6314,24 +6314,24 @@ std::vector<uint32_t>
 
 static void SetCustomBlockVersionForNotChild(
     std::vector<uint32_t>& custom_block_data,
-    const ParticleGlobals::old_dynamic_particle_type_value& dst
+    const ParticleGlobals::ENOldDynamicParticleTypeValue& dst
     )
 {
     switch (dst)
     {
-        case ParticleGlobals::old_dynamic_particle_type_value::e2150_old_dynamic_particle:
+        case ParticleGlobals::ENOldDynamicParticleTypeValue::e2150_old_dynamic_particle:
             custom_block_data = GetE2150CustomBlockData();
         break;
 
-        case ParticleGlobals::old_dynamic_particle_type_value::ww3_of_hh_old_dynamic_particle:
+        case ParticleGlobals::ENOldDynamicParticleTypeValue::ww3_of_hh_old_dynamic_particle:
             custom_block_data = GetWw3OrHhCustomBlockData();
         break;
 
-        case ParticleGlobals::old_dynamic_particle_type_value::ww2_or_fa_or_pc2_old_dynamic_particle:
+        case ParticleGlobals::ENOldDynamicParticleTypeValue::ww2_or_fa_or_pc2_old_dynamic_particle:
             custom_block_data = GetWw2OrFaOrPc2CustomBlockData();
         break;
 
-        case ParticleGlobals::old_dynamic_particle_type_value::ks_old_dynamic_particle:
+        case ParticleGlobals::ENOldDynamicParticleTypeValue::ks_old_dynamic_particle:
             custom_block_data = GetKsCustomBlockData();
         break;
 
@@ -6344,24 +6344,24 @@ static void SetCustomBlockVersionForNotChild(
 
 static void SetCustomBlockVersionForChild   (
                                             std::vector<uint32_t>& custom_block_data,
-                                            const ParticleGlobals::old_dynamic_particle_type_value& dst
+                                            const ParticleGlobals::ENOldDynamicParticleTypeValue& dst
                                             )
 {
     switch (dst)
     {
-        case ParticleGlobals::old_dynamic_particle_type_value::e2150_old_dynamic_particle:
+        case ParticleGlobals::ENOldDynamicParticleTypeValue::e2150_old_dynamic_particle:
             custom_block_data = GetE2150CustomBlockData();
         break;
 
-        case ParticleGlobals::old_dynamic_particle_type_value::ww3_of_hh_old_dynamic_particle:
+        case ParticleGlobals::ENOldDynamicParticleTypeValue::ww3_of_hh_old_dynamic_particle:
             custom_block_data = GetWw3OrHhCustomBlockDataForChild();
         break;
 
-        case ParticleGlobals::old_dynamic_particle_type_value::ww2_or_fa_or_pc2_old_dynamic_particle:
+        case ParticleGlobals::ENOldDynamicParticleTypeValue::ww2_or_fa_or_pc2_old_dynamic_particle:
             custom_block_data = GetWw2OrFaOrPc2CustomBlockDataForChild();
         break;
 
-        case ParticleGlobals::old_dynamic_particle_type_value::ks_old_dynamic_particle:
+        case ParticleGlobals::ENOldDynamicParticleTypeValue::ks_old_dynamic_particle:
             custom_block_data = GetKsCustomBlockDataForChild();
         break;
 

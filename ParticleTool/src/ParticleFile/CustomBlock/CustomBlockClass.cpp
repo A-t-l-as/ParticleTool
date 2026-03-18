@@ -15,16 +15,16 @@ CustomBlockClass::CustomBlockClass(ParticleFileVersionInfo arg_prt_file_version_
 void CustomBlockClass::SetPrtVersion(const ParticleFileVersionInfo& arg_prt_file_version_info)
 {
     if (m_prt_file_version_info.particle_version ==
-            ParticleGlobals::particle_type_value::dynamic_particle
+            ParticleGlobals::ENParticleTypeValue::dynamic_particle
         &&
         m_prt_file_version_info.dynamic_particle_version !=
-               ParticleGlobals::old_dynamic_particle_type_value::not_old_dynamic_particle
+               ParticleGlobals::ENOldDynamicParticleTypeValue::not_old_dynamic_particle
         &&
         arg_prt_file_version_info.particle_version ==
-               ParticleGlobals::particle_type_value::dynamic_particle
+               ParticleGlobals::ENParticleTypeValue::dynamic_particle
         &&
         arg_prt_file_version_info.dynamic_particle_version !=
-               ParticleGlobals::old_dynamic_particle_type_value::not_old_dynamic_particle
+               ParticleGlobals::ENOldDynamicParticleTypeValue::not_old_dynamic_particle
         )
     {
         m_custom_block_data.SetCustomBlockVersion
@@ -99,14 +99,14 @@ void CustomBlockClass::ReadFrom(BinFile& buff)
 {
     switch (m_prt_file_version_info.particle_version)
     {
-        case ParticleGlobals::particle_type_value::dynamic_particle:
-        case ParticleGlobals::particle_type_value::ks_particles_emiter:
+        case ParticleGlobals::ENParticleTypeValue::dynamic_particle:
+        case ParticleGlobals::ENParticleTypeValue::ks_particles_emiter:
             ReadFromKsFile(buff);
         break;
 
-        case ParticleGlobals::particle_type_value::e2160_particle:
-        case ParticleGlobals::particle_type_value::particle_gen_particle:
-        case ParticleGlobals::particle_type_value::two_worlds_particle:
+        case ParticleGlobals::ENParticleTypeValue::e2160_particle:
+        case ParticleGlobals::ENParticleTypeValue::particle_gen_particle:
+        case ParticleGlobals::ENParticleTypeValue::two_worlds_particle:
             ReadFromPgAndTwAndE2160File(buff);
         break;
 
@@ -153,15 +153,15 @@ void CustomBlockClass::ExportTo(std::stringstream& output)
     switch (m_prt_file_version_info.particle_version)
     {
 
-        case ParticleGlobals::particle_type_value::dynamic_particle:
-        case ParticleGlobals::particle_type_value::ks_particles_emiter:
+        case ParticleGlobals::ENParticleTypeValue::dynamic_particle:
+        case ParticleGlobals::ENParticleTypeValue::ks_particles_emiter:
             ExportAsKsFormat(output);
         break;
 
 
-        case ParticleGlobals::particle_type_value::e2160_particle:
-        case ParticleGlobals::particle_type_value::particle_gen_particle:
-        case ParticleGlobals::particle_type_value::two_worlds_particle:
+        case ParticleGlobals::ENParticleTypeValue::e2160_particle:
+        case ParticleGlobals::ENParticleTypeValue::particle_gen_particle:
+        case ParticleGlobals::ENParticleTypeValue::two_worlds_particle:
         break;
 
         default: break;

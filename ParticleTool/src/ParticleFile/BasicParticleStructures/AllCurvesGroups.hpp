@@ -98,7 +98,7 @@ public:
         int64_t& label_index,
         size_t& number_of_single_curve_points_checksum,
         std::unordered_map<std::string, int64_t>& mapped_labels,
-        ParticleGlobals::curve_or_teselate_mode& mode
+        ParticleGlobals::ENCurveOrTeselateMode& mode
     )
     {
         ParseCurveHeader
@@ -126,7 +126,7 @@ public:
         int64_t& label_index,
         size_t& number_of_single_curve_points_checksum,
         std::unordered_map<std::string, int64_t>& mapped_labels,
-        ParticleGlobals::curve_or_teselate_mode& mode
+        ParticleGlobals::ENCurveOrTeselateMode& mode
     )
     {
 
@@ -162,7 +162,7 @@ public:
                 this->curve_bonus_values[label_index] = ParticleGlobals::example_curve_bonus_value;
             }
 
-            mode = ParticleGlobals::curve_or_teselate_mode::curve;
+            mode = ParticleGlobals::ENCurveOrTeselateMode::curve;
         }
 
 
@@ -174,7 +174,7 @@ public:
         const std::string& arg_line,
         int64_t& label_index,
         size_t& number_of_single_curve_points_checksum,
-        ParticleGlobals::curve_or_teselate_mode& mode
+        ParticleGlobals::ENCurveOrTeselateMode& mode
     )
     {
 
@@ -182,7 +182,7 @@ public:
             arg_line != "{" &&
             arg_line != "}" &&
             number_of_single_curve_points_checksum > 0 &&
-            mode == ParticleGlobals::curve_or_teselate_mode::curve)
+            mode == ParticleGlobals::ENCurveOrTeselateMode::curve)
         {
             if (arg_line.find(".") != std::string::npos)
             {
@@ -216,9 +216,9 @@ public:
             }
         }
 
-        if (mode == ParticleGlobals::curve_or_teselate_mode::curve && number_of_single_curve_points_checksum == 0)
+        if (mode == ParticleGlobals::ENCurveOrTeselateMode::curve && number_of_single_curve_points_checksum == 0)
         {
-            mode = ParticleGlobals::curve_or_teselate_mode::null;
+            mode = ParticleGlobals::ENCurveOrTeselateMode::null;
         }
 
     }

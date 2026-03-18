@@ -12,7 +12,7 @@ using namespace std;
 void DynamicParticleClass::InitializeImportHashMaps()
 {
     if (m_prt_file_version_info.dynamic_particle_version !=
-        ParticleGlobals::old_dynamic_particle_type_value::e2150_old_dynamic_particle)
+        ParticleGlobals::ENOldDynamicParticleTypeValue::e2150_old_dynamic_particle)
 	{
         m_list_of_type_consts_for_import[""]					= 0;
         m_list_of_type_consts_for_import["Explosion"]			= 1;
@@ -39,7 +39,7 @@ void DynamicParticleClass::InitializeImportHashMaps()
 
 
     if (m_prt_file_version_info.dynamic_particle_version ==
-        ParticleGlobals::old_dynamic_particle_type_value::e2150_old_dynamic_particle)
+        ParticleGlobals::ENOldDynamicParticleTypeValue::e2150_old_dynamic_particle)
 	{
         m_list_of_type_consts_for_import[""]					= 0;
         m_list_of_type_consts_for_import["Explosion"]			= 1;
@@ -71,7 +71,7 @@ void DynamicParticleClass::InitializeExportHashMaps()
 {
 
     if (m_dynamic_particle_cfg.input_dynamic_particle_file_version_info.dynamic_particle_version !=
-        ParticleGlobals::old_dynamic_particle_type_value::e2150_old_dynamic_particle)
+        ParticleGlobals::ENOldDynamicParticleTypeValue::e2150_old_dynamic_particle)
     {
         m_list_of_type_consts_for_export[0] = "";
         m_list_of_type_consts_for_export[1] = "Explosion";
@@ -96,7 +96,7 @@ void DynamicParticleClass::InitializeExportHashMaps()
     }
 
     if (m_dynamic_particle_cfg.input_dynamic_particle_file_version_info.dynamic_particle_version ==
-        ParticleGlobals::old_dynamic_particle_type_value::e2150_old_dynamic_particle)
+        ParticleGlobals::ENOldDynamicParticleTypeValue::e2150_old_dynamic_particle)
     {
         m_list_of_type_consts_for_export[0] = "";
         m_list_of_type_consts_for_export[1] = "Explosion";
@@ -379,7 +379,7 @@ void DynamicParticleClass::WriteDynamicParticleDataToFileBuffer(BinFile& output_
     output_file_buff.WriteArrayViaIndexes(arg_dynamic_particle_data.frames, { 0, 1, 3, 4, 2 });
 
     if (m_prt_file_version_info.dynamic_particle_version !=
-        ParticleGlobals::old_dynamic_particle_type_value::e2150_old_dynamic_particle)
+        ParticleGlobals::ENOldDynamicParticleTypeValue::e2150_old_dynamic_particle)
 	{
         output_file_buff.WriteValue(static_cast<int32_t>(arg_dynamic_particle_data.time[0]));
         output_file_buff.WriteValue(static_cast<int32_t>(arg_dynamic_particle_data.time[1]));
@@ -436,7 +436,7 @@ void DynamicParticleClass::WriteDynamicParticleDataToFileBuffer(BinFile& output_
 
 
     if (m_prt_file_version_info.dynamic_particle_version !=
-        ParticleGlobals::old_dynamic_particle_type_value::e2150_old_dynamic_particle)
+        ParticleGlobals::ENOldDynamicParticleTypeValue::e2150_old_dynamic_particle)
 	{
         output_file_buff.WriteValue(arg_dynamic_particle_data.layer);
 	}
@@ -445,22 +445,22 @@ void DynamicParticleClass::WriteDynamicParticleDataToFileBuffer(BinFile& output_
 
 void DynamicParticleClass::WriteCompilatorFlagsFile() const
 {
-    std::unordered_map<ParticleGlobals::old_dynamic_particle_type_value, std::string>
+    std::unordered_map<ParticleGlobals::ENOldDynamicParticleTypeValue, std::string>
         dynamic_particle_formats_hash_map = {};
 
-    dynamic_particle_formats_hash_map[ParticleGlobals::old_dynamic_particle_type_value::not_old_dynamic_particle] =
+    dynamic_particle_formats_hash_map[ParticleGlobals::ENOldDynamicParticleTypeValue::not_old_dynamic_particle] =
         "not_dynamic_particle";
 
-    dynamic_particle_formats_hash_map[ParticleGlobals::old_dynamic_particle_type_value::e2150_old_dynamic_particle] =
+    dynamic_particle_formats_hash_map[ParticleGlobals::ENOldDynamicParticleTypeValue::e2150_old_dynamic_particle] =
         ParticleGlobals::e2150_format_str;
 
-    dynamic_particle_formats_hash_map[ParticleGlobals::old_dynamic_particle_type_value::ww3_of_hh_old_dynamic_particle] =
+    dynamic_particle_formats_hash_map[ParticleGlobals::ENOldDynamicParticleTypeValue::ww3_of_hh_old_dynamic_particle] =
         ParticleGlobals::ww3_or_hh_format_str;
 
-    dynamic_particle_formats_hash_map[ParticleGlobals::old_dynamic_particle_type_value::ww2_or_fa_or_pc2_old_dynamic_particle] =
+    dynamic_particle_formats_hash_map[ParticleGlobals::ENOldDynamicParticleTypeValue::ww2_or_fa_or_pc2_old_dynamic_particle] =
         ParticleGlobals::ww2_or_fa_or_pc2_format_str;
 
-    dynamic_particle_formats_hash_map[ParticleGlobals::old_dynamic_particle_type_value::ks_old_dynamic_particle] =
+    dynamic_particle_formats_hash_map[ParticleGlobals::ENOldDynamicParticleTypeValue::ks_old_dynamic_particle] =
         ParticleGlobals::ks_format_str;
 
     stringstream compilator_flags_file_stream;
@@ -515,7 +515,7 @@ bool DynamicParticleClass::ReadData(BinFile& buffer, std::string particle_name,
     buffer.ReadValue(dynamic_particle_data.frames[2]);
 
     if (m_dynamic_particle_cfg.input_dynamic_particle_file_version_info.dynamic_particle_version !=
-        ParticleGlobals::old_dynamic_particle_type_value::e2150_old_dynamic_particle)
+        ParticleGlobals::ENOldDynamicParticleTypeValue::e2150_old_dynamic_particle)
     {
         int32_t i32_temp_value = 0;
         buffer.ReadValue(i32_temp_value);
@@ -614,7 +614,7 @@ bool DynamicParticleClass::ReadData(BinFile& buffer, std::string particle_name,
     }
 
     if (m_dynamic_particle_cfg.input_dynamic_particle_file_version_info.dynamic_particle_version !=
-        ParticleGlobals :: old_dynamic_particle_type_value :: e2150_old_dynamic_particle)
+        ParticleGlobals :: ENOldDynamicParticleTypeValue :: e2150_old_dynamic_particle)
     {
         buffer.ReadValue(dynamic_particle_data.layer);
     }
@@ -700,7 +700,7 @@ void DynamicParticleClass::ExportTo(const DynamicParticleData& dynamic_particle_
                                count_of_tabulation);
 
     if (m_dynamic_particle_cfg.input_dynamic_particle_file_version_info.dynamic_particle_version !=
-        ParticleGlobals::old_dynamic_particle_type_value::e2150_old_dynamic_particle)
+        ParticleGlobals::ENOldDynamicParticleTypeValue::e2150_old_dynamic_particle)
     {
         TU::WriteArrayToSs<float>("Time",
                                    dynamic_particle_data.time,
@@ -726,7 +726,7 @@ void DynamicParticleClass::ExportTo(const DynamicParticleData& dynamic_particle_
 
 
     if (m_dynamic_particle_cfg.input_dynamic_particle_file_version_info.dynamic_particle_version !=
-        ParticleGlobals::old_dynamic_particle_type_value::e2150_old_dynamic_particle)
+        ParticleGlobals::ENOldDynamicParticleTypeValue::e2150_old_dynamic_particle)
     {
         TU::WriteOneValueToSs("Layer", dynamic_particle_data.layer, output, count_of_tabulation);
     }

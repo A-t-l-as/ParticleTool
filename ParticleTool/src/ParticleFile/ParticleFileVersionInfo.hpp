@@ -8,8 +8,8 @@
 
 struct ParticleFileVersionInfo
 {
-    ParticleGlobals::particle_type_value particle_version =
-        ParticleGlobals::particle_type_value::not_particle;
+    ParticleGlobals::ENParticleTypeValue particle_version =
+        ParticleGlobals::ENParticleTypeValue::not_particle;
 
 
     size_t custom_data_block_size = 0;
@@ -25,8 +25,8 @@ struct ParticleFileVersionInfo
     int size_of_end_bonus_data = 0;
 
 
-    ParticleGlobals::old_dynamic_particle_type_value dynamic_particle_version =
-        ParticleGlobals::old_dynamic_particle_type_value::not_old_dynamic_particle;
+    ParticleGlobals::ENOldDynamicParticleTypeValue dynamic_particle_version =
+        ParticleGlobals::ENOldDynamicParticleTypeValue::not_old_dynamic_particle;
 
     std::string ToString()
     {

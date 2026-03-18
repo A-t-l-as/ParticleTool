@@ -18,7 +18,7 @@ public:
                  );
 
     void CompileDirectory(const std::filesystem::path& input_dir_path);
-    ParticleGlobals::particle_type_value GetParticleVersion() const { return m_particle_type_version; }
+    ParticleGlobals::ENParticleTypeValue GetParticleVersion() const { return m_particle_type_version; }
 
 private:
     BinFile& r_output_file_buffer;
@@ -39,10 +39,10 @@ private:
     std::string m_inside_obj_type;
     std::string m_inside_obj_name;
 
-    ParticleGlobals::particle_type_value m_particle_type_version;
+    ParticleGlobals::ENParticleTypeValue m_particle_type_version;
     ParticleFileVersionInfo m_particle_file_version_info;
 
-    std::unordered_map<ParticleGlobals::particle_type_value, ParticleFileVersionInfo> m_list_of_prt_file_ver_info = {};
+    std::unordered_map<ParticleGlobals::ENParticleTypeValue, ParticleFileVersionInfo> m_list_of_prt_file_ver_info = {};
 
     void CompileTxtFileToBinBuffer
     (
@@ -66,11 +66,11 @@ private:
     void InitializeFormatHashMaps();
 
     void GetPrtVersion(const std::string& arg_line,
-                       ParticleGlobals::particle_type_value& dst,
+                       ParticleGlobals::ENParticleTypeValue& dst,
                        ParticleFileVersionInfo& arg_particle_file_version_info);
 
     void GetDynamicParticleVersion(const std::string& arg_line,
-                                   ParticleGlobals::particle_type_value& dst,
+                                   ParticleGlobals::ENParticleTypeValue& dst,
                                    ParticleFileVersionInfo& arg_particle_file_version_info);
 
 

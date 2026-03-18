@@ -82,7 +82,7 @@ constexpr uint8_t tw_new_format_fourth_byte_of_header = 2;
 
 constexpr std::streamsize aod_float_precision = 17;
 
-enum class particle_type_value
+enum class ENParticleTypeValue
 {
     not_particle,
     dynamic_particle,
@@ -95,12 +95,12 @@ enum class particle_type_value
 static bool IsValidParticleTypeValue(int value)
 {
     // Dostosuj zakres do rzeczywistych wartości enuma
-    return value >= static_cast<int>(ParticleGlobals::particle_type_value::not_particle)
-           && value <= static_cast<int>(ParticleGlobals::particle_type_value::particle_gen_particle);
+    return value >= static_cast<int>(ParticleGlobals::ENParticleTypeValue::not_particle)
+           && value <= static_cast<int>(ParticleGlobals::ENParticleTypeValue::particle_gen_particle);
 }
 
 
-enum class old_dynamic_particle_type_value
+enum class ENOldDynamicParticleTypeValue
 {
     not_old_dynamic_particle,
     e2150_old_dynamic_particle,
@@ -109,7 +109,7 @@ enum class old_dynamic_particle_type_value
     ks_old_dynamic_particle
 };
 
-enum class curve_or_teselate_mode
+enum class ENCurveOrTeselateMode
 {
     null,
     curve,

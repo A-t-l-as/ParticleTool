@@ -142,20 +142,20 @@ void ParticleClass::InitializeHashMap()
 {
     switch (m_prt_file_version_info.particle_version)
     {
-        case ParticleGlobals::particle_type_value::particle_gen_particle:
-        case ParticleGlobals::particle_type_value::two_worlds_particle:
+        case ParticleGlobals::ENParticleTypeValue::particle_gen_particle:
+        case ParticleGlobals::ENParticleTypeValue::two_worlds_particle:
             Misc::InitializeHashMapViaLabelsVector(m_labels_map, PgAndTwParticleStrings);
         break;
 
-        case ParticleGlobals::particle_type_value::e2160_particle:
+        case ParticleGlobals::ENParticleTypeValue::e2160_particle:
             Misc::InitializeHashMapViaLabelsVector(m_labels_map, E2160ParticleStrings);
         break;
 
-        case ParticleGlobals::particle_type_value::ks_particles_emiter:
+        case ParticleGlobals::ENParticleTypeValue::ks_particles_emiter:
             Misc::InitializeHashMapViaLabelsVector(m_labels_map, KsParticleStrings);
         break;
 
-        case ParticleGlobals::particle_type_value::dynamic_particle:
+        case ParticleGlobals::ENParticleTypeValue::dynamic_particle:
         break;
 
         default: break;
@@ -176,7 +176,7 @@ ParticleClass::ParticleClass(
     m_teselate_iel_index(-1),
     m_number_of_single_teselate_points_checksum(0),
 
-    m_mode(ParticleGlobals::curve_or_teselate_mode::null)
+    m_mode(ParticleGlobals::ENCurveOrTeselateMode::null)
 {
     if(arg_app_mode == ParticleGlobals::ENAppModes::m_import)
     {
@@ -306,19 +306,19 @@ void ParticleClass::WriteTo(BinFile& output_file_buff)
 {
     switch (m_prt_file_version_info.particle_version)
     {
-        case ParticleGlobals::particle_type_value::dynamic_particle:
+        case ParticleGlobals::ENParticleTypeValue::dynamic_particle:
         break;
 
-        case ParticleGlobals::particle_type_value::ks_particles_emiter:
+        case ParticleGlobals::ENParticleTypeValue::ks_particles_emiter:
             WriteToKsFormat(output_file_buff);
         break;
 
-        case ParticleGlobals::particle_type_value::particle_gen_particle:
-        case ParticleGlobals::particle_type_value::two_worlds_particle:
+        case ParticleGlobals::ENParticleTypeValue::particle_gen_particle:
+        case ParticleGlobals::ENParticleTypeValue::two_worlds_particle:
             WriteToParticleGenAndTwoWorldsFormat(output_file_buff);
         break;
 
-        case ParticleGlobals::particle_type_value::e2160_particle:
+        case ParticleGlobals::ENParticleTypeValue::e2160_particle:
             WriteToE2160Format(output_file_buff);
         break;
 
@@ -412,7 +412,7 @@ void ParticleClass::WriteToParticleGenAndTwoWorldsFormat(BinFile& output_file_bu
     m_particle_data.curves_groups.WriteTo(output_file_buff);
 
 
-    if (m_prt_file_version_info.particle_version == ParticleGlobals::particle_type_value::two_worlds_particle)
+    if (m_prt_file_version_info.particle_version == ParticleGlobals::ENParticleTypeValue::two_worlds_particle)
     {
 
         m_particle_data.teselates_groups.WriteTo<uint64_t>(output_file_buff, true);
@@ -657,7 +657,7 @@ void ParticleClass::ReadFromParticleGenAndTwoWorldsFile(BinFile& buff)
     m_particle_data.curves_groups.ResizeOnlyCurveBonusValues(m_prt_file_version_info.number_of_iel_in_emiter);
 
 
-    if (m_prt_file_version_info.particle_version == ParticleGlobals::particle_type_value::two_worlds_particle)
+    if (m_prt_file_version_info.particle_version == ParticleGlobals::ENParticleTypeValue::two_worlds_particle)
     {
         m_particle_data.teselates_groups.
             ReadFrom<uint64_t>(m_prt_file_version_info.number_of_iel_in_particle, buff, true);
@@ -862,19 +862,19 @@ void ParticleClass::ReadFrom(BinFile& buff)
 {
     switch (m_prt_file_version_info.particle_version)
     {
-        case ParticleGlobals::particle_type_value::dynamic_particle:
+        case ParticleGlobals::ENParticleTypeValue::dynamic_particle:
         break;
 
-        case ParticleGlobals::particle_type_value::ks_particles_emiter:
+        case ParticleGlobals::ENParticleTypeValue::ks_particles_emiter:
             ReadFromKsFile(buff);
         break;
 
-        case ParticleGlobals::particle_type_value::particle_gen_particle:
-        case ParticleGlobals::particle_type_value::two_worlds_particle:
+        case ParticleGlobals::ENParticleTypeValue::particle_gen_particle:
+        case ParticleGlobals::ENParticleTypeValue::two_worlds_particle:
             ReadFromParticleGenAndTwoWorldsFile(buff);
         break;
 
-        case ParticleGlobals::particle_type_value::e2160_particle:
+        case ParticleGlobals::ENParticleTypeValue::e2160_particle:
             ReadFromE2160File(buff);
         break;
 
@@ -1144,19 +1144,19 @@ void ParticleClass::ExportTo(std::stringstream& output)
 {
     switch (m_prt_file_version_info.particle_version)
     {
-        case ParticleGlobals::particle_type_value::dynamic_particle:
+        case ParticleGlobals::ENParticleTypeValue::dynamic_particle:
         break;
 
-        case ParticleGlobals::particle_type_value::ks_particles_emiter:
+        case ParticleGlobals::ENParticleTypeValue::ks_particles_emiter:
             ExportAsKsFormat(output);
         break;
 
-        case ParticleGlobals::particle_type_value::particle_gen_particle:
-        case ParticleGlobals::particle_type_value::two_worlds_particle:
+        case ParticleGlobals::ENParticleTypeValue::particle_gen_particle:
+        case ParticleGlobals::ENParticleTypeValue::two_worlds_particle:
             ExportAsParticleGenAndTwoWorldsFormat(output);
         break;
 
-        case ParticleGlobals::particle_type_value::e2160_particle:
+        case ParticleGlobals::ENParticleTypeValue::e2160_particle:
             ExportAsE2160Format(output);
         break;
 

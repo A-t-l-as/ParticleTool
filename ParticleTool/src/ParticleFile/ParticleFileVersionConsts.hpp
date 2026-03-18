@@ -9,7 +9,7 @@ namespace ParticleFileVersionConsts
 
 const ParticleFileVersionInfo earth2150_dynamic_file_type =
 {
-        ParticleGlobals::particle_type_value::dynamic_particle,  //particle_version
+        ParticleGlobals::ENParticleTypeValue::dynamic_particle,  //particle_version
         ParticleGlobals::size_of_e2150_root_data_block / sizeof(uint32_t) ,  //custom_data_block_size
 
         0, // number_of_iel_in_effect
@@ -21,13 +21,13 @@ const ParticleFileVersionInfo earth2150_dynamic_file_type =
         0, // number_of_linked_min_max_in_particle
 
         0, // size_of_end_bonus_data
-        ParticleGlobals::old_dynamic_particle_type_value::e2150_old_dynamic_particle
+        ParticleGlobals::ENOldDynamicParticleTypeValue::e2150_old_dynamic_particle
 };
 
 
 const ParticleFileVersionInfo ww3_or_heli_heroes_dynamic_file_type =
 {
-        ParticleGlobals::particle_type_value::dynamic_particle,  //particle_version
+        ParticleGlobals::ENParticleTypeValue::dynamic_particle,  //particle_version
         ParticleGlobals::size_of_ww3_or_heli_heroes_root_data_block / sizeof(uint32_t) ,  //custom_data_block_size
 
         0, // number_of_iel_in_effect
@@ -39,12 +39,12 @@ const ParticleFileVersionInfo ww3_or_heli_heroes_dynamic_file_type =
         0, // number_of_linked_min_max_in_particle
 
         0, // size_of_end_bonus_data
-        ParticleGlobals::old_dynamic_particle_type_value::ww3_of_hh_old_dynamic_particle
+        ParticleGlobals::ENOldDynamicParticleTypeValue::ww3_of_hh_old_dynamic_particle
 };
 
 const ParticleFileVersionInfo ww2_or_fa_or_pc2_dynamic_file_type =
 {
-        ParticleGlobals::particle_type_value::dynamic_particle,  //particle_version
+        ParticleGlobals::ENParticleTypeValue::dynamic_particle,  //particle_version
         ParticleGlobals::size_of_ww2_or_fa_or_pc2_root_data_block / sizeof(uint32_t) ,  //custom_data_block_size
 
         0, // number_of_iel_in_effect
@@ -56,13 +56,13 @@ const ParticleFileVersionInfo ww2_or_fa_or_pc2_dynamic_file_type =
         0, // number_of_linked_min_max_in_particle
 
         0, // size_of_end_bonus_data
-        ParticleGlobals::old_dynamic_particle_type_value::ww2_or_fa_or_pc2_old_dynamic_particle
+        ParticleGlobals::ENOldDynamicParticleTypeValue::ww2_or_fa_or_pc2_old_dynamic_particle
 };
 
 
 const ParticleFileVersionInfo ks_dynamic_file_type =
 {
-        ParticleGlobals::particle_type_value::dynamic_particle,  //particle_version
+        ParticleGlobals::ENParticleTypeValue::dynamic_particle,  //particle_version
         ParticleGlobals::size_of_ks_root_data_block / sizeof(uint32_t) ,  //custom_data_block_size
 
         0, // number_of_iel_in_effect
@@ -74,13 +74,13 @@ const ParticleFileVersionInfo ks_dynamic_file_type =
         0, // number_of_linked_min_max_in_particle
 
         0, // size_of_end_bonus_data
-        ParticleGlobals::old_dynamic_particle_type_value::ks_old_dynamic_particle
+        ParticleGlobals::ENOldDynamicParticleTypeValue::ks_old_dynamic_particle
 };
 
 
 const ParticleFileVersionInfo ks_particle_file_type =
 {
-        ParticleGlobals::particle_type_value::ks_particles_emiter,  //particle_version
+        ParticleGlobals::ENParticleTypeValue::ks_particles_emiter,  //particle_version
         ParticleGlobals::size_of_ks_root_data_block / sizeof(uint32_t) ,  //custom_data_block_size
 
         0, // number_of_iel_in_effect
@@ -92,13 +92,13 @@ const ParticleFileVersionInfo ks_particle_file_type =
         8, // number_of_linked_min_max_in_particle
 
         0, // size_of_end_bonus_data
-        ParticleGlobals::old_dynamic_particle_type_value::not_old_dynamic_particle
+        ParticleGlobals::ENOldDynamicParticleTypeValue::not_old_dynamic_particle
 };
 
 
 const ParticleFileVersionInfo particle_gen_file_type =
 {
-        ParticleGlobals::particle_type_value::particle_gen_particle,
+        ParticleGlobals::ENParticleTypeValue::particle_gen_particle,
         0,
 
         12,
@@ -110,12 +110,12 @@ const ParticleFileVersionInfo particle_gen_file_type =
         28 / 2,
 
         16,
-        ParticleGlobals::old_dynamic_particle_type_value::not_old_dynamic_particle
+        ParticleGlobals::ENOldDynamicParticleTypeValue::not_old_dynamic_particle
 };
 
 const ParticleFileVersionInfo two_worlds_particle_edit_file_type =
 {
-        ParticleGlobals::particle_type_value::two_worlds_particle,
+        ParticleGlobals::ENParticleTypeValue::two_worlds_particle,
         0,
 
         12,
@@ -127,12 +127,12 @@ const ParticleFileVersionInfo two_worlds_particle_edit_file_type =
         28 / 2,
 
         16,
-        ParticleGlobals::old_dynamic_particle_type_value::not_old_dynamic_particle
+        ParticleGlobals::ENOldDynamicParticleTypeValue::not_old_dynamic_particle
 };
 
 const ParticleFileVersionInfo e2160_particle_edit_file_type =
 {
-        ParticleGlobals::particle_type_value::e2160_particle, //particle_version
+        ParticleGlobals::ENParticleTypeValue::e2160_particle, //particle_version
         0, //custom_data_block_size
 
         0, //number_of_iel_in_effect
@@ -144,7 +144,7 @@ const ParticleFileVersionInfo e2160_particle_edit_file_type =
         11, //number_of_linked_min_max_in_particle
 
         18, //size_of_end_bonus_data
-        ParticleGlobals::old_dynamic_particle_type_value::not_old_dynamic_particle
+        ParticleGlobals::ENOldDynamicParticleTypeValue::not_old_dynamic_particle
 };
 
 

@@ -14,8 +14,8 @@ struct CustomBlockData
     std::vector<uint32_t> data = {};
 
 
-    void SetCustomBlockVersion( const ParticleGlobals::old_dynamic_particle_type_value& src,
-                                const ParticleGlobals::old_dynamic_particle_type_value& dst,
+    void SetCustomBlockVersion( const ParticleGlobals::ENOldDynamicParticleTypeValue& src,
+                                const ParticleGlobals::ENOldDynamicParticleTypeValue& dst,
                                 bool& is_child)
     {
         if (src == dst)

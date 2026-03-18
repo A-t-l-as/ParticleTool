@@ -12,20 +12,20 @@ using namespace std;
 namespace fs = filesystem;
 
 
-void ParticleToMyAodApp::WriteIntroToFile(ParticleGlobals::particle_type_value& my_particle_file_type)
+void ParticleToMyAodApp::WriteIntroToFile(ParticleGlobals::ENParticleTypeValue& my_particle_file_type)
 {
     switch (my_particle_file_type)
     {
-        case ParticleGlobals::particle_type_value::dynamic_particle:
+        case ParticleGlobals::ENParticleTypeValue::dynamic_particle:
             m_output_stream << "Dynamic" << endl
                 << "{" << endl
             << "}" << endl;
         break;
 
-        case ParticleGlobals::particle_type_value::ks_particles_emiter:
-        case ParticleGlobals::particle_type_value::particle_gen_particle:
-        case ParticleGlobals::particle_type_value::two_worlds_particle:
-        case ParticleGlobals::particle_type_value::e2160_particle:
+        case ParticleGlobals::ENParticleTypeValue::ks_particles_emiter:
+        case ParticleGlobals::ENParticleTypeValue::particle_gen_particle:
+        case ParticleGlobals::ENParticleTypeValue::two_worlds_particle:
+        case ParticleGlobals::ENParticleTypeValue::e2160_particle:
 
             m_output_stream << "ParticlesEmiter" << endl
             << "{" << endl
@@ -57,15 +57,15 @@ void ParticleToMyAodApp::GetInformationAboutEndFormat(bool& force_end_format)
     {
         CONSOLE_IN.Scan(answer);
 
-        if (!(Misc::CheckAnswerWithEveryElementInVec(answer, possible_answers)))
+        if (!(Misc::CheckThatElementExistInVec(answer, possible_answers)))
         {
             CONSOLE_OUT.PrintLn("Give the answer in y or n form...");
         }
 
     } 
-    while (!(Misc::CheckAnswerWithEveryElementInVec(answer, possible_answers)));
+    while (!(Misc::CheckThatElementExistInVec(answer, possible_answers)));
 
-    if (Misc::CheckAnswerWithEveryElementInVec(answer, yes_answers))
+    if (Misc::CheckThatElementExistInVec(answer, yes_answers))
     {
         force_end_format = true;
 
@@ -80,13 +80,13 @@ void ParticleToMyAodApp::GetInformationAboutEndFormat(bool& force_end_format)
         {
             CONSOLE_IN.Scan(format);
 
-            if (!(Misc::CheckAnswerWithEveryElementInVec(format, correct_formats)))
+            if (!(Misc::CheckThatElementExistInVec(format, correct_formats)))
             {
                 CONSOLE_OUT.PrintLn("Choose from the given formats...");
             }
 
         } 
-        while(!(Misc::CheckAnswerWithEveryElementInVec(format, correct_formats)));
+        while(!(Misc::CheckThatElementExistInVec(format, correct_formats)));
 
         m_forced_format = m_format_containers[format];
     }
@@ -103,14 +103,14 @@ ParticleToMyAodApp::ParticleToMyAodApp() :
 
     m_obj_name(string()),
 
-    m_my_particle_file_type( ParticleGlobals::particle_type_value::not_particle ),
+    m_my_particle_file_type( ParticleGlobals::ENParticleTypeValue::not_particle ),
     m_fourth_byte_of_header(0),
 
     m_program_parent_path(fs::path())
 {}
 
 
-void ParticleToMyAodApp::Run(int my_argc, char* my_argv[])
+int ParticleToMyAodApp::Run(int my_argc, char* my_argv[])
 {
     const unsigned int c_correct_number_of_args = 3;
     const unsigned int c_number_of_args_with_force_format = 5;
@@ -145,7 +145,7 @@ void ParticleToMyAodApp::Run(int my_argc, char* my_argv[])
 
         if (force_command == "--force" || force_command == "-force")
         {
-            if (Misc::CheckAnswerWithEveryElementInVec(format, correct_formats))
+            if (Misc::CheckThatElementExistInVec(format, correct_formats))
             {
                 force_end_format = true;
                 m_forced_format = m_format_containers[format];
@@ -188,7 +188,7 @@ void ParticleToMyAodApp::Run(int my_argc, char* my_argv[])
     m_fourth_byte_of_header = file_header.GetFourthByteOfHeader();
 
 
-    if (m_my_particle_file_type == ParticleGlobals::particle_type_value::not_particle)
+    if (m_my_particle_file_type == ParticleGlobals::ENParticleTypeValue::not_particle)
     {
         CONSOLE_OUT.PrintLn("The file being opened is not a particle file...");
         exit(EXIT_FAILURE);
@@ -198,12 +198,12 @@ void ParticleToMyAodApp::Run(int my_argc, char* my_argv[])
     
     ShowInfoAboutParticle(m_my_particle_file_type);
 
-    if (standard_program_exec == true && m_my_particle_file_type != ParticleGlobals::particle_type_value::dynamic_particle)
+    if (standard_program_exec == true && m_my_particle_file_type != ParticleGlobals::ENParticleTypeValue::dynamic_particle)
     {
         GetInformationAboutEndFormat(force_end_format);
     }
 
-    if (force_end_format == true && m_my_particle_file_type != ParticleGlobals::particle_type_value::dynamic_particle)
+    if (force_end_format == true && m_my_particle_file_type != ParticleGlobals::ENParticleTypeValue::dynamic_particle)
     {
         file_header.SetPrtVersion(m_forced_format.particle_version);
     }
@@ -213,27 +213,27 @@ void ParticleToMyAodApp::Run(int my_argc, char* my_argv[])
     switch (m_my_particle_file_type)
     {
        
-        case ParticleGlobals::particle_type_value::dynamic_particle:
+        case ParticleGlobals::ENParticleTypeValue::dynamic_particle:
             DecompileDynamicParticleToMyAod
                 (particle_directory_path, input_file);
         break;
 
-        case ParticleGlobals::particle_type_value::ks_particles_emiter:
+        case ParticleGlobals::ENParticleTypeValue::ks_particles_emiter:
             DecompileParticleEditFileToMyAod
                 (particle_directory_path, ParticleFileVersionConsts::ks_particle_file_type, input_file, force_end_format);
         break;
 
-        case ParticleGlobals::particle_type_value::particle_gen_particle:
+        case ParticleGlobals::ENParticleTypeValue::particle_gen_particle:
             DecompileParticleEditFileToMyAod
                 (particle_directory_path, ParticleFileVersionConsts::particle_gen_file_type, input_file, force_end_format);
         break;
 
-        case ParticleGlobals::particle_type_value::two_worlds_particle:
+        case ParticleGlobals::ENParticleTypeValue::two_worlds_particle:
             DecompileParticleEditFileToMyAod
                 (particle_directory_path, ParticleFileVersionConsts::two_worlds_particle_edit_file_type, input_file, force_end_format);
         break;
 
-        case ParticleGlobals::particle_type_value::e2160_particle:
+        case ParticleGlobals::ENParticleTypeValue::e2160_particle:
             DecompileParticleEditFileToMyAod
                 (particle_directory_path, ParticleFileVersionConsts::e2160_particle_edit_file_type, input_file, force_end_format);
         break;
@@ -247,6 +247,8 @@ void ParticleToMyAodApp::Run(int my_argc, char* my_argv[])
                       particle_directory_path / (this->m_obj_name + ParticleGlobals::bonus_file_rest_name_str));
 
     CONSOLE_OUT.PrintLn("The file named ", m_input_file_path.string(), " has been decompiled!");
+
+    return EXIT_SUCCESS;
 }
 
 

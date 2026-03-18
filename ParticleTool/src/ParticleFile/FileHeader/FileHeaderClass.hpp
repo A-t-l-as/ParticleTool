@@ -10,15 +10,15 @@ class FileHeaderClass
 {
 public:
     FileHeaderClass() :
-        m_app_particle_file_type(ParticleGlobals::particle_type_value::not_particle)
+        m_app_particle_file_type(ParticleGlobals::ENParticleTypeValue::not_particle)
     {}
 
     void ReadFrom(BinFile& buff);
     void ExportTo(std::stringstream& output);
 
-    void SetPrtVersion(const ParticleGlobals::particle_type_value& arg_particle_type_value);
+    void SetPrtVersion(const ParticleGlobals::ENParticleTypeValue& arg_particle_type_value);
 
-    ParticleGlobals::particle_type_value GetParticleFileType() const { return m_app_particle_file_type; }
+    ParticleGlobals::ENParticleTypeValue GetParticleFileType() const { return m_app_particle_file_type; }
 
     uint8_t GetFourthByteOfHeader() const { return m_file_header_data.header[3]; }
 
@@ -29,7 +29,7 @@ private:
     void ExportAsE2160Format(std::stringstream& output) const;
 
     FileHeaderData m_file_header_data = {};
-    ParticleGlobals::particle_type_value m_app_particle_file_type;
+    ParticleGlobals::ENParticleTypeValue m_app_particle_file_type;
 };
 
 

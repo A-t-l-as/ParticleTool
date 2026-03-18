@@ -21,19 +21,19 @@ void IntroductionHeaderClass::ParseAndWriteTo(BinFile& output_file_buff, bool is
 
 		switch (m_prt_file_version_info.particle_version)
 		{
-            case ParticleGlobals::particle_type_value::dynamic_particle:
+            case ParticleGlobals::ENParticleTypeValue::dynamic_particle:
                 WriteToDynamicParticleFormat(output_file_buff, is_child);
             break;
 
-            case ParticleGlobals::particle_type_value::ks_particles_emiter:
+            case ParticleGlobals::ENParticleTypeValue::ks_particles_emiter:
                 WriteToKsParticleEmiterFormat(output_file_buff, is_child);
             break;
 
-            case ParticleGlobals::particle_type_value::e2160_particle:
+            case ParticleGlobals::ENParticleTypeValue::e2160_particle:
             break;
 
-            case ParticleGlobals::particle_type_value::particle_gen_particle:
-            case ParticleGlobals::particle_type_value::two_worlds_particle:
+            case ParticleGlobals::ENParticleTypeValue::particle_gen_particle:
+            case ParticleGlobals::ENParticleTypeValue::two_worlds_particle:
                 WriteToPgAndTwFormat(output_file_buff);
             break;
 
@@ -116,14 +116,14 @@ void IntroductionHeaderClass::WriteToPgAndTwFormat(BinFile& output_file_buff) co
 	uint8_t pg_and_tw_format_header[] = { 'P', 'R', 0, 0 };
 	const uint8_t tw_unique_format_value = 2;
 
-    if (m_prt_file_version_info.particle_version == ParticleGlobals::particle_type_value::particle_gen_particle)
+    if (m_prt_file_version_info.particle_version == ParticleGlobals::ENParticleTypeValue::particle_gen_particle)
 	{
         output_file_buff.WriteValue(pg_and_tw_format_header);
 
 		return;
 	}
 
-    if (m_prt_file_version_info.particle_version == ParticleGlobals::particle_type_value::two_worlds_particle)
+    if (m_prt_file_version_info.particle_version == ParticleGlobals::ENParticleTypeValue::two_worlds_particle)
 	{
 		pg_and_tw_format_header[3] = tw_unique_format_value;
 

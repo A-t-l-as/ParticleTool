@@ -30,14 +30,14 @@ public:
 
 
     virtual void ConvertTeselatesAndCurves
-        (ParticleGlobals::particle_type_value& src, ParticleGlobals::particle_type_value& dst) = 0;
+        (ParticleGlobals::ENParticleTypeValue& src, ParticleGlobals::ENParticleTypeValue& dst) = 0;
 
 
     void ConvertTeselatesAndCurvesWholeFormat
-        (ParticleGlobals::particle_type_value& src, ParticleGlobals::particle_type_value& dst)
+        (ParticleGlobals::ENParticleTypeValue& src, ParticleGlobals::ENParticleTypeValue& dst)
     {
-        ParticleGlobals::particle_type_value copy_of_src = src;
-        ParticleGlobals::particle_type_value copy_of_dst;
+        ParticleGlobals::ENParticleTypeValue copy_of_src = src;
+        ParticleGlobals::ENParticleTypeValue copy_of_dst;
 
         if (src > dst)
         {
@@ -47,7 +47,7 @@ public:
 
                 if(!ParticleGlobals::IsValidParticleTypeValue(next_val)) break;
 
-                copy_of_dst = static_cast<ParticleGlobals::particle_type_value>(next_val);
+                copy_of_dst = static_cast<ParticleGlobals::ENParticleTypeValue>(next_val);
 
                 this->ConvertTeselatesAndCurves(copy_of_src, copy_of_dst);
 
@@ -70,7 +70,7 @@ public:
 
                 if(!ParticleGlobals::IsValidParticleTypeValue(next_val)) break;
 
-                copy_of_dst = static_cast<ParticleGlobals::particle_type_value>(next_val);
+                copy_of_dst = static_cast<ParticleGlobals::ENParticleTypeValue>(next_val);
 
                 this->ConvertTeselatesAndCurves(copy_of_src, copy_of_dst);
 

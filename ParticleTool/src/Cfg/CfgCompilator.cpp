@@ -129,10 +129,10 @@ void CfgCompilator::InitializeHashMap()
     for (size_t i = 0; i < CfgCompilatorUtils::number_of_value_types; ++i)
     {
         m_config_en_value_types_hash_map[ string(CfgCompilatorUtils::value_types[i]) ] =
-            static_cast<CfgCompilatorUtils::en_cfg_value_types>(i);
+            static_cast<CfgCompilatorUtils::ENCfgValueTypes>(i);
     }
 
-    m_config_en_value_types_hash_map[""] = CfgCompilatorUtils::en_cfg_value_types::invalid;
+    m_config_en_value_types_hash_map[""] = CfgCompilatorUtils::ENCfgValueTypes::invalid;
 }
 
 
@@ -179,15 +179,15 @@ void CfgCompilator::GetValuesFromString
 
 void CfgCompilator::InitializeSwitches(const std::string& value_type, std::string& value)
 {
-    CfgCompilatorUtils::en_cfg_value_types arg_en_value_type = this->m_config_en_value_types_hash_map[value_type];
+    CfgCompilatorUtils::ENCfgValueTypes arg_en_value_type = this->m_config_en_value_types_hash_map[value_type];
     std::string boolean_value_str_from_str = this->m_config_values_hash_map[value];
 
 
-    if (arg_en_value_type == CfgCompilatorUtils::en_cfg_value_types::invalid)
+    if (arg_en_value_type == CfgCompilatorUtils::ENCfgValueTypes::invalid)
         return;
 
     // dynamic_particle_input_format
-    if (arg_en_value_type == CfgCompilatorUtils::en_cfg_value_types::dynamic_particle_input_format)
+    if (arg_en_value_type == CfgCompilatorUtils::ENCfgValueTypes::dynamic_particle_input_format)
     {
         if( m_dynamic_particle_file_version_map_str[value] == "" )
         {
@@ -210,7 +210,7 @@ void CfgCompilator::InitializeSwitches(const std::string& value_type, std::strin
     }
 
     // force_specific_export_format
-    if (arg_en_value_type == CfgCompilatorUtils::en_cfg_value_types::force_specific_export_format)
+    if (arg_en_value_type == CfgCompilatorUtils::ENCfgValueTypes::force_specific_export_format)
     {
         if (boolean_value_str_from_str == "")
         {
@@ -231,7 +231,7 @@ void CfgCompilator::InitializeSwitches(const std::string& value_type, std::strin
     }
 
     // forced_export_format
-    if (arg_en_value_type == CfgCompilatorUtils::en_cfg_value_types::forced_export_format)
+    if (arg_en_value_type == CfgCompilatorUtils::ENCfgValueTypes::forced_export_format)
     {
         if ( m_dynamic_particle_file_version_map_str[value] == "" )
         {

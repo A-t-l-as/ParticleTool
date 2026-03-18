@@ -5,7 +5,7 @@
 #include <cstddef>
 namespace CfgCompilatorUtils
 {
-enum en_cfg_value_types
+enum class ENCfgValueTypes
 {
     dynamic_particle_input_format,
     force_specific_export_format,

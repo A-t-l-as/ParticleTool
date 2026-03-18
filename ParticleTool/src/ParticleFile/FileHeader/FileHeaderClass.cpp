@@ -4,43 +4,43 @@
 using namespace std;
 
 
-void FileHeaderClass::SetPrtVersion(const ParticleGlobals::particle_type_value& arg_particle_type_value)
+void FileHeaderClass::SetPrtVersion(const ParticleGlobals::ENParticleTypeValue& arg_particle_type_value)
 {
      switch (arg_particle_type_value)
      {
-        case ParticleGlobals::particle_type_value::two_worlds_particle:
+        case ParticleGlobals::ENParticleTypeValue::two_worlds_particle:
              m_file_header_data.header[0] = 'P';
              m_file_header_data.header[1] = 'R';
              m_file_header_data.header[2] = '\0';
              m_file_header_data.header[3] = '\2';
-             m_file_header_data.particle_file_type = ParticleGlobals::particle_type_value::not_particle;
+             m_file_header_data.particle_file_type = ParticleGlobals::ENParticleTypeValue::not_particle;
         break;
 
-        case ParticleGlobals::particle_type_value::particle_gen_particle:
+        case ParticleGlobals::ENParticleTypeValue::particle_gen_particle:
              m_file_header_data.header[0] = 'P';
              m_file_header_data.header[1] = 'R';
              m_file_header_data.header[2] = '\0';
              m_file_header_data.header[3] = '\0';
-             m_file_header_data.particle_file_type = ParticleGlobals::particle_type_value::not_particle;
+             m_file_header_data.particle_file_type = ParticleGlobals::ENParticleTypeValue::not_particle;
         break;
 
-        case ParticleGlobals::particle_type_value::e2160_particle:
+        case ParticleGlobals::ENParticleTypeValue::e2160_particle:
         break;
 
-        case ParticleGlobals::particle_type_value::dynamic_particle:
+        case ParticleGlobals::ENParticleTypeValue::dynamic_particle:
             m_file_header_data.header[0] = 0xFF;
             m_file_header_data.header[1] = 0xA1;
             m_file_header_data.header[2] = 0xD0;
             m_file_header_data.header[3] = 0x30;
-            m_file_header_data.particle_file_type = ParticleGlobals::particle_type_value::dynamic_particle;
+            m_file_header_data.particle_file_type = ParticleGlobals::ENParticleTypeValue::dynamic_particle;
         break;
 
-        case ParticleGlobals::particle_type_value::ks_particles_emiter:
+        case ParticleGlobals::ENParticleTypeValue::ks_particles_emiter:
             m_file_header_data.header[0] = 0xFF;
             m_file_header_data.header[1] = 0xA1;
             m_file_header_data.header[2] = 0xD0;
             m_file_header_data.header[3] = 0x30;
-            m_file_header_data.particle_file_type = ParticleGlobals::particle_type_value::ks_particles_emiter;
+            m_file_header_data.particle_file_type = ParticleGlobals::ENParticleTypeValue::ks_particles_emiter;
         break;
 
         default: break;
@@ -65,7 +65,7 @@ void FileHeaderClass::ReadFrom(BinFile& buff)
         m_file_header_data.header[3] == '\0'
         )
     {
-        m_app_particle_file_type = ParticleGlobals::particle_type_value::particle_gen_particle;
+        m_app_particle_file_type = ParticleGlobals::ENParticleTypeValue::particle_gen_particle;
     }
 
     if (m_file_header_data.header[0] == 'P' &&
@@ -74,7 +74,7 @@ void FileHeaderClass::ReadFrom(BinFile& buff)
         m_file_header_data.header[3] == '\1'
         )
     {
-        m_app_particle_file_type = ParticleGlobals::particle_type_value::two_worlds_particle;
+        m_app_particle_file_type = ParticleGlobals::ENParticleTypeValue::two_worlds_particle;
     }
 
 
@@ -84,7 +84,7 @@ void FileHeaderClass::ReadFrom(BinFile& buff)
         m_file_header_data.header[3] == '\2'
         )
     {
-        m_app_particle_file_type = ParticleGlobals::particle_type_value::two_worlds_particle;
+        m_app_particle_file_type = ParticleGlobals::ENParticleTypeValue::two_worlds_particle;
     }
 
     if (//m_file_header_data.header[0] == '\0' &&
@@ -93,7 +93,7 @@ void FileHeaderClass::ReadFrom(BinFile& buff)
         m_file_header_data.header[3] == '\0'
         )
     {
-        m_app_particle_file_type = ParticleGlobals::particle_type_value::e2160_particle;
+        m_app_particle_file_type = ParticleGlobals::ENParticleTypeValue::e2160_particle;
 
         buff.MoveOverBy( - static_cast<int64_t>( sizeof(uint32_t) ) );
         return;
@@ -176,17 +176,17 @@ void FileHeaderClass::ExportTo(std::stringstream& output)
     switch (m_app_particle_file_type)
     {
 
-        case ParticleGlobals::particle_type_value::particle_gen_particle:
-        case ParticleGlobals::particle_type_value::two_worlds_particle:
+        case ParticleGlobals::ENParticleTypeValue::particle_gen_particle:
+        case ParticleGlobals::ENParticleTypeValue::two_worlds_particle:
             ExportAsPgAndTwFormat(output);
         break;
 
-        case ParticleGlobals::particle_type_value::e2160_particle:
+        case ParticleGlobals::ENParticleTypeValue::e2160_particle:
             ExportAsE2160Format(output);
         break;
 
-        case ParticleGlobals::particle_type_value::dynamic_particle:
-        case ParticleGlobals::particle_type_value::ks_particles_emiter:
+        case ParticleGlobals::ENParticleTypeValue::dynamic_particle:
+        case ParticleGlobals::ENParticleTypeValue::ks_particles_emiter:
             ExportAsKsFormat(output);
         break;
 

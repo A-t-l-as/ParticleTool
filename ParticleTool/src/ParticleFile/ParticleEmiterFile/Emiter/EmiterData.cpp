@@ -9,7 +9,7 @@
 using namespace std;
 
 
-void EmiterData::ConvertTeselatesAndCurves(ParticleGlobals::particle_type_value& src, ParticleGlobals::particle_type_value& dst)
+void EmiterData::ConvertTeselatesAndCurves(ParticleGlobals::ENParticleTypeValue& src, ParticleGlobals::ENParticleTypeValue& dst)
 {
         if (src == dst)
         {
@@ -33,9 +33,9 @@ void EmiterData::ConvertTeselatesAndCurves(ParticleGlobals::particle_type_value&
         constexpr int64_t e2160_linked_min_max_rotation_y_index = 5;
 
 
-        if (src == ParticleGlobals::particle_type_value::two_worlds_particle
+        if (src == ParticleGlobals::ENParticleTypeValue::two_worlds_particle
             &&
-            dst == ParticleGlobals::particle_type_value::particle_gen_particle)
+            dst == ParticleGlobals::ENParticleTypeValue::particle_gen_particle)
         {
             CurvesAndTeselatesUtils::EraseSetOfTeselateAndCurveGroup(emiter_data.curves_groups, emiter_data.teselates_groups,
                                                      tw_light_intensity_min_index, tw_light_intensity_max_index);
@@ -45,9 +45,9 @@ void EmiterData::ConvertTeselatesAndCurves(ParticleGlobals::particle_type_value&
             return;
         }
 
-        if (src == ParticleGlobals::particle_type_value::particle_gen_particle
+        if (src == ParticleGlobals::ENParticleTypeValue::particle_gen_particle
             &&
-            dst == ParticleGlobals::particle_type_value::two_worlds_particle)
+            dst == ParticleGlobals::ENParticleTypeValue::two_worlds_particle)
         {
             CurvesAndTeselatesUtils::InsertTeselateAndCurveGroup
                 (emiter_data.curves_groups, emiter_data.teselates_groups, tw_light_intensity_min_index);
@@ -61,9 +61,9 @@ void EmiterData::ConvertTeselatesAndCurves(ParticleGlobals::particle_type_value&
         }
 
 
-        if (src == ParticleGlobals::particle_type_value::two_worlds_particle
+        if (src == ParticleGlobals::ENParticleTypeValue::two_worlds_particle
             &&
-            dst == ParticleGlobals::particle_type_value::e2160_particle)
+            dst == ParticleGlobals::ENParticleTypeValue::e2160_particle)
         {
             CurvesAndTeselatesUtils::CopyTeselateAndCurvePairToBackup(emiter_data.curves_groups,
                                                       emiter_data.teselates_groups,
@@ -90,9 +90,9 @@ void EmiterData::ConvertTeselatesAndCurves(ParticleGlobals::particle_type_value&
             return;
         }
 
-        if (src == ParticleGlobals::particle_type_value::e2160_particle
+        if (src == ParticleGlobals::ENParticleTypeValue::e2160_particle
             &&
-            dst == ParticleGlobals::particle_type_value::two_worlds_particle)
+            dst == ParticleGlobals::ENParticleTypeValue::two_worlds_particle)
         {
             for
             (
@@ -133,9 +133,9 @@ void EmiterData::ConvertTeselatesAndCurves(ParticleGlobals::particle_type_value&
         }
 
 
-        if (src == ParticleGlobals::particle_type_value::e2160_particle
+        if (src == ParticleGlobals::ENParticleTypeValue::e2160_particle
             &&
-            dst == ParticleGlobals::particle_type_value::ks_particles_emiter)
+            dst == ParticleGlobals::ENParticleTypeValue::ks_particles_emiter)
         {
             for(size_t i = 1 ; i <= 6; ++i)
                 CurvesAndTeselatesUtils::EraseTeselateAndCurveGroup(emiter_data.curves_groups, emiter_data.teselates_groups, i);
@@ -159,9 +159,9 @@ void EmiterData::ConvertTeselatesAndCurves(ParticleGlobals::particle_type_value&
         }
 
 
-        if (src == ParticleGlobals::particle_type_value::ks_particles_emiter
+        if (src == ParticleGlobals::ENParticleTypeValue::ks_particles_emiter
             &&
-            dst == ParticleGlobals::particle_type_value::e2160_particle)
+            dst == ParticleGlobals::ENParticleTypeValue::e2160_particle)
         {
             CurvesAndTeselatesUtils::CopyTeselateAndCurvePairToBackup(emiter_data.curves_groups,
                                                       emiter_data.teselates_groups,

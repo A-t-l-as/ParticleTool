@@ -18,7 +18,7 @@ public:
     //Metody:
     ParticleToMyAodApp();
 
-    void Run(int my_argc, char* my_argv[]) override;
+    int Run(int my_argc, char* my_argv[]) override;
 
 
 private:
@@ -34,7 +34,7 @@ private:
         ParticleGlobals::pg_format_str
     };
 
-    std::unordered_map<ParticleGlobals::particle_type_value, std::string> m_format_names = {};
+    std::unordered_map<ParticleGlobals::ENParticleTypeValue, std::string> m_format_names = {};
 
     std::unordered_map<std::string, ParticleFileVersionInfo> m_format_containers = {};
 
@@ -47,11 +47,11 @@ private:
 
     ParticleFileVersionInfo m_forced_format = {};
 
-    ParticleGlobals::particle_type_value m_my_particle_file_type;
+    ParticleGlobals::ENParticleTypeValue m_my_particle_file_type;
 
     uint8_t m_fourth_byte_of_header;
 
-    void WriteIntroToFile(ParticleGlobals::particle_type_value& my_particle_file_type);
+    void WriteIntroToFile(ParticleGlobals::ENParticleTypeValue& my_particle_file_type);
 
     void DecompileDynamicParticleToMyAod
         (const std::filesystem::path& particle_directory_path, BinFile& input_file);
@@ -66,22 +66,22 @@ private:
     
     void InitializeFormatHashMaps()
     {
-        m_format_names[ParticleGlobals::particle_type_value::not_particle] =
+        m_format_names[ParticleGlobals::ENParticleTypeValue::not_particle] =
             "NULL (NOT PARTICLE)";
 
-        m_format_names[ParticleGlobals::particle_type_value::dynamic_particle] =
+        m_format_names[ParticleGlobals::ENParticleTypeValue::dynamic_particle] =
             "Dynamic";
 
-        m_format_names[ParticleGlobals::particle_type_value::ks_particles_emiter] =
+        m_format_names[ParticleGlobals::ENParticleTypeValue::ks_particles_emiter] =
             "Ks ParticlesEmiter";
 
-        m_format_names[ParticleGlobals::particle_type_value::e2160_particle] =
+        m_format_names[ParticleGlobals::ENParticleTypeValue::e2160_particle] =
             "E2160 Particle Edit";
 
-        m_format_names[ParticleGlobals::particle_type_value::two_worlds_particle] =
+        m_format_names[ParticleGlobals::ENParticleTypeValue::two_worlds_particle] =
             "Two Worlds Particle Edit";
 
-        m_format_names[ParticleGlobals::particle_type_value::particle_gen_particle] =
+        m_format_names[ParticleGlobals::ENParticleTypeValue::particle_gen_particle] =
             "Particle Gen";
 
         m_format_containers[ParticleGlobals::ks_format_str] =
@@ -97,7 +97,7 @@ private:
             ParticleFileVersionConsts::particle_gen_file_type;
     }
 
-    void ShowInfoAboutParticle(ParticleGlobals::particle_type_value& arg_particle_file_type)
+    void ShowInfoAboutParticle(ParticleGlobals::ENParticleTypeValue& arg_particle_file_type)
     {
         const int32_t i32_arg_particle_file_type = static_cast<int32_t>(arg_particle_file_type);
 

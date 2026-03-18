@@ -16,7 +16,7 @@ public:
     MyAodToParticleApp()
     {}
 
-    void Run(int my_argc, char* my_argv[]) override
+    int Run(int my_argc, char* my_argv[]) override
     {
         std::filesystem::path input_directory_path;
 
@@ -43,6 +43,8 @@ public:
 
         CONSOLE_OUT.PrintLn(Mess::endl,"-----------------------------------------------------",
                             Mess::endl, "The directory named ", input_directory_path.string(), " was successfully compiled...");
+
+        return EXIT_SUCCESS;
     }
 
 
@@ -59,24 +61,24 @@ private:
 
 
     std::filesystem::path CreateOutputFileName(const std::filesystem::path& arg_path,
-                                               const ParticleGlobals::particle_type_value& version) const
+                                               const ParticleGlobals::ENParticleTypeValue& version) const
     {
         std::string dir_name = arg_path.stem().string();
 
         switch (version)
         {
-            case ParticleGlobals::particle_type_value::dynamic_particle:
-            case ParticleGlobals::particle_type_value::ks_particles_emiter:
+            case ParticleGlobals::ENParticleTypeValue::dynamic_particle:
+            case ParticleGlobals::ENParticleTypeValue::ks_particles_emiter:
                 return arg_path.parent_path() / (dir_name + ".msh");
             break;
 
-            case ParticleGlobals::particle_type_value::e2160_particle:
-            case ParticleGlobals::particle_type_value::two_worlds_particle:
-            case ParticleGlobals::particle_type_value::particle_gen_particle:
+            case ParticleGlobals::ENParticleTypeValue::e2160_particle:
+            case ParticleGlobals::ENParticleTypeValue::two_worlds_particle:
+            case ParticleGlobals::ENParticleTypeValue::particle_gen_particle:
                 return arg_path.parent_path() / (dir_name + ".prt");
             break;
 
-            case ParticleGlobals::particle_type_value::not_particle:
+            case ParticleGlobals::ENParticleTypeValue::not_particle:
                 return arg_path.parent_path() / (dir_name + ".error");
             break;
 

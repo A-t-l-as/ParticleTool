@@ -23,20 +23,20 @@ void ParticleEndClass::WriteTo(BinFile& output_file_buff)
 {
     switch (m_prt_file_version_info.particle_version)
     {
-        case ParticleGlobals::particle_type_value::ks_particles_emiter:
+        case ParticleGlobals::ENParticleTypeValue::ks_particles_emiter:
             WriteToKsFormat(output_file_buff);
         break;
 
-        case ParticleGlobals::particle_type_value::dynamic_particle:
+        case ParticleGlobals::ENParticleTypeValue::dynamic_particle:
         break;
 
 
-        case ParticleGlobals::particle_type_value::particle_gen_particle:
-        case ParticleGlobals::particle_type_value::two_worlds_particle:
+        case ParticleGlobals::ENParticleTypeValue::particle_gen_particle:
+        case ParticleGlobals::ENParticleTypeValue::two_worlds_particle:
             WriteToPgAndTwFormat(output_file_buff);
         break;
 
-        case ParticleGlobals::particle_type_value::e2160_particle:
+        case ParticleGlobals::ENParticleTypeValue::e2160_particle:
             WriteToE2160Format(output_file_buff);
         break;
 
@@ -94,20 +94,20 @@ void ParticleEndClass::ReadFrom(BinFile& buff)
 {
     switch (m_prt_file_version_info.particle_version)
     {
-        case ParticleGlobals::particle_type_value::ks_particles_emiter:
+        case ParticleGlobals::ENParticleTypeValue::ks_particles_emiter:
             ReadFromKsFile(buff);
         break;
 
-        case ParticleGlobals::particle_type_value::dynamic_particle:
+        case ParticleGlobals::ENParticleTypeValue::dynamic_particle:
         break;
 
 
-        case ParticleGlobals::particle_type_value::particle_gen_particle:
-        case ParticleGlobals::particle_type_value::two_worlds_particle:
+        case ParticleGlobals::ENParticleTypeValue::particle_gen_particle:
+        case ParticleGlobals::ENParticleTypeValue::two_worlds_particle:
             ReadFromPgAndTwFile(buff);
         break;
 
-        case ParticleGlobals::particle_type_value::e2160_particle:
+        case ParticleGlobals::ENParticleTypeValue::e2160_particle:
             ReadFromE2160File(buff);
         break;
 
@@ -142,17 +142,17 @@ void ParticleEndClass::ExportTo(std::stringstream& output)
     switch (m_prt_file_version_info.particle_version)
     {
 
-        case ParticleGlobals::particle_type_value::ks_particles_emiter:
+        case ParticleGlobals::ENParticleTypeValue::ks_particles_emiter:
             ExportAsKsFormat(output);
         break;
 
-        case ParticleGlobals::particle_type_value::dynamic_particle:
+        case ParticleGlobals::ENParticleTypeValue::dynamic_particle:
         break;
 
 
-        case ParticleGlobals::particle_type_value::e2160_particle:
-        case ParticleGlobals::particle_type_value::two_worlds_particle:
-        case ParticleGlobals::particle_type_value::particle_gen_particle:
+        case ParticleGlobals::ENParticleTypeValue::e2160_particle:
+        case ParticleGlobals::ENParticleTypeValue::two_worlds_particle:
+        case ParticleGlobals::ENParticleTypeValue::particle_gen_particle:
             ExportAsPgAndTwAndE2160Format(output);
         break;
 

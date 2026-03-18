@@ -160,7 +160,7 @@ private:
                     ParticleGlobals::ww2_or_fa_or_pc2_format_str
                 };
 
-                if (!(Misc::CheckAnswerWithEveryElementInVec(value, dynamic_particle_correct_formats)))
+                if (!(Misc::CheckThatElementExistInVec(value, dynamic_particle_correct_formats)))
                 {
                     CONSOLE_ERR.PrintLn
                         ("Error: The __compilator_flags__.cfg file contains an incorrect dynamic particle format.",

@@ -59,7 +59,7 @@ private:
     void WriteToKsFormat(BinFile& output_file_buff);
 
 
-    ParticleGlobals::curve_or_teselate_mode m_mode;
+    ParticleGlobals::ENCurveOrTeselateMode m_mode;
 
     int64_t m_curve_iel_index;
     size_t m_number_of_single_curve_points_checksum;

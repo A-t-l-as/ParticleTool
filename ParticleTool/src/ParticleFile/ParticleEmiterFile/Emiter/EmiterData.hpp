@@ -85,7 +85,7 @@ public:
 //----------------------------------------------
 
 void ConvertTeselatesAndCurves
-    (ParticleGlobals::particle_type_value& src, ParticleGlobals::particle_type_value& dst) override;
+    (ParticleGlobals::ENParticleTypeValue& src, ParticleGlobals::ENParticleTypeValue& dst) override;
 
 
 

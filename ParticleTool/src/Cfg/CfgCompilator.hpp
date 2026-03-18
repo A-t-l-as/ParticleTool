@@ -30,7 +30,7 @@ private:
     void InitializeHashMap();
 
     std::unordered_map<std::string, std::string> m_config_values_hash_map = {};
-    std::unordered_map<std::string, CfgCompilatorUtils::en_cfg_value_types> m_config_en_value_types_hash_map = {};
+    std::unordered_map<std::string, CfgCompilatorUtils::ENCfgValueTypes> m_config_en_value_types_hash_map = {};
 
     std::unordered_map<std::string, ParticleFileVersionInfo> m_dynamic_particle_file_version_map = {};
     std::unordered_map<std::string, std::string> m_dynamic_particle_file_version_map_str = {};

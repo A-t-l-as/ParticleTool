@@ -98,7 +98,7 @@ public:
         int64_t& label_index,
         size_t& number_of_single_teselate_points_checksum,
         std::unordered_map<std::string, int64_t>& mapped_labels,
-        ParticleGlobals::curve_or_teselate_mode& mode
+        ParticleGlobals::ENCurveOrTeselateMode& mode
     )
     {
         ParseTeselateHeader(arg_line, label_index, number_of_single_teselate_points_checksum, mapped_labels, mode);
@@ -112,7 +112,7 @@ public:
         int64_t& label_index,
         size_t& number_of_single_teselate_points_checksum,
         std::unordered_map<std::string, int64_t>& mapped_labels,
-        ParticleGlobals::curve_or_teselate_mode& mode
+        ParticleGlobals::ENCurveOrTeselateMode& mode
     )
     {
 
@@ -144,7 +144,7 @@ public:
                 this->iel_scalars[label_index] = teselate_scalar;
             }
 
-            mode = ParticleGlobals::curve_or_teselate_mode::teselate;
+            mode = ParticleGlobals::ENCurveOrTeselateMode::teselate;
         }
 
 
@@ -156,14 +156,14 @@ public:
         const std::string& arg_line,
         int64_t& label_index,
         size_t& number_of_single_teselate_points_checksum,
-        ParticleGlobals::curve_or_teselate_mode& mode
+        ParticleGlobals::ENCurveOrTeselateMode& mode
     )
     {
         if (!arg_line.starts_with(ParticleGlobals::teselate_type_name_str_with_space) &&
             arg_line != "{" &&
             arg_line != "}" &&
             number_of_single_teselate_points_checksum > 0 &&
-            mode == ParticleGlobals::curve_or_teselate_mode::teselate)
+            mode == ParticleGlobals::ENCurveOrTeselateMode::teselate)
         {
             if (arg_line.find(".") != std::string::npos)
             {
@@ -173,9 +173,9 @@ public:
             }
         }
 
-        if (mode == ParticleGlobals::curve_or_teselate_mode::teselate && number_of_single_teselate_points_checksum == 0)
+        if (mode == ParticleGlobals::ENCurveOrTeselateMode::teselate && number_of_single_teselate_points_checksum == 0)
         {
-            mode = ParticleGlobals::curve_or_teselate_mode::null;
+            mode = ParticleGlobals::ENCurveOrTeselateMode::null;
         }
 
     }
